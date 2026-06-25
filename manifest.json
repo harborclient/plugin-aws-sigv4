@@ -1,0 +1,19 @@
+{
+  "id": "com.harborclient.plugins.aws-sigv4",
+  "name": "AWS SigV4",
+  "version": "1.0.0",
+  "author": "HarborClient",
+  "description": "README.md",
+  "engines": {
+    "harborclient": ">=1.8.4"
+  },
+  "renderer": "dist/renderer.js",
+  "main": "dist/main.js",
+  "permissions": ["ui", "storage", "http", "ipc"],
+  "contributes": {
+    "collectionSettingsTabs": [{ "id": "aws", "title": "AWS SigV4" }],
+    "requestTabs": [{ "id": "aws", "title": "AWS SigV4" }],
+    "requestToolbarActions": [{ "id": "sign", "title": "Sign request" }],
+    "commands": [{ "id": "sign", "title": "Sign request" }]
+  }
+}

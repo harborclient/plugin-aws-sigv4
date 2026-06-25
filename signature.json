@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "pluginId": "com.harborclient.plugins.aws-sigv4",
+  "pluginVersion": "1.0.0",
+  "algorithm": "Ed25519",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "88ad380decbd9a1a6659c573833c96932dab32e7e0e88fa3353c98f758cd10b3"
+    },
+    {
+      "path": "dist/main.js",
+      "sha256": "9061828274c71184f128e1f76648597726bb0d4c61b8fc6a391039eb7534a1d0"
+    },
+    {
+      "path": "dist/renderer.js",
+      "sha256": "333b56c87d2addac5ad3c719a8ad758669bd67033e2a0fe8e94383a62b022d4e"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "d745955ea11a5e94c188b07ad24cd3227c2c079f76a040048edf4fcc6662ac15"
+    },
+    {
+      "path": "package.json",
+      "sha256": "61cf099f03915e383c489c00e8a4a7392d834c41a8a7b28a89b9309b98e293d0"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "2109cbe3b6063b913babf96b976112556f24fffb487912e21685d0b6ebb55cc4"
+    },
+    {
+      "path": "README.md",
+      "sha256": "b7176a869b7bd6a796b5801d5b9d44e469372ece9caaced0bf1ccb22b1b5d750"
+    },
+    {
+      "path": "screenshot.png",
+      "sha256": "c1bf531ab5e767ab5c601517ea0f12dabf0eb0db48a6af0fc6ffcac90a1b4731"
+    },
+    {
+      "path": "scripts/plugin-sign.ts",
+      "sha256": "dc21f6daa2c0d454b53cc719524f41669c1f1a0319b80b50dc1f0b3fa3f796e3"
+    },
+    {
+      "path": "scripts/plugin-verify.ts",
+      "sha256": "555f897860b881817f6aa66a933a38fb31388b461b8fa1e9e9b6126b67bc18e0"
+    },
+    {
+      "path": "scripts/render-screenshot.sh",
+      "sha256": "d2fe525f530446f4f53add2abcfed2ec7f11253a7d128608781ccd18487fbb25"
+    },
+    {
+      "path": "scripts/screenshot-marketing.html",
+      "sha256": "c85fdd84a3fe6a8d78f2458b179301b00f7e45d7c1e3a15a55d98dfc6825e5d0"
+    },
+    {
+      "path": "src/components/activeRequestBridge.ts",
+      "sha256": "09bd9d6368d0d4c3745c12f985986b92c83d02ac4e386eb461e8c8b2c7d50e1f"
+    },
+    {
+      "path": "src/components/CollectionAwsTab.tsx",
+      "sha256": "99c2674df60f95a1bae6c70c6a5dcfeb8fa84206000604cb6305d057ac9b0104"
+    },
+    {
+      "path": "src/components/RequestAwsTab.tsx",
+      "sha256": "4f4de9e164f8545dda48c9da0624e87083b8b383b685e2d55d6e1c01983e3977"
+    },
+    {
+      "path": "src/components/SignPreviewModal.tsx",
+      "sha256": "aa18541684d186408e00be4a13cd737986e34265df2af3b838c62c3a9dc66076"
+    },
+    {
+      "path": "src/components/signPreviewState.ts",
+      "sha256": "ecee4b0cd7d57f6152d7fa33f7a14a311eee570d8a7bd13b08636caa93c17c4b"
+    },
+    {
+      "path": "src/configCache.ts",
+      "sha256": "aafeab4a42246791b259e1302f3d0c527cea7d6a2d652512271449c4356fdd2d"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "e2d2abfda71e3153642d7362f520c0997d0133716346582e63d5f578a54331fb"
+    },
+    {
+      "path": "src/renderer.tsx",
+      "sha256": "c2bb9c45b43430df44df14aff31e799100cb153c2b32b0a43e6406ca9d3f1afa"
+    },
+    {
+      "path": "src/signing/parseUrl.ts",
+      "sha256": "e1e03199b2de4e25c6ff6a1f88fdfcc6f7cadfe5847f1100bdbfb411de0fdd39"
+    },
+    {
+      "path": "src/signing/signRequest.test.ts",
+      "sha256": "37fb94d3573c34a3cca6c7422d18a328145837c1daf6dff13e0e4dd8cf5ce8a8"
+    },
+    {
+      "path": "src/signing/signRequest.ts",
+      "sha256": "0a1760801b437ae54121ba2710b5e02260da1d41dd2ef9075be2c30415ff142f"
+    },
+    {
+      "path": "src/storage/defaults.ts",
+      "sha256": "46de91e40a3724a54bce88247853177bc67ab40cf0d720b21d9f7d0443f01dfe"
+    },
+    {
+      "path": "src/storage/keys.ts",
+      "sha256": "3acfee926b745f9e7835af3db8217b58e4a46963a25386a6dbfad3b2c9bc5ee5"
+    },
+    {
+      "path": "src/sync/configSync.ts",
+      "sha256": "c99a25d0d97084aae562887584907313fd44359d9a5572fd0a158c1764aed037"
+    },
+    {
+      "path": "src/sync/signingContext.ts",
+      "sha256": "07edca032d219384f4fe10a79642ad7c0ea0085af93d8285bca66e99b174cddb"
+    },
+    {
+      "path": "src/types.ts",
+      "sha256": "3e6ac7ebe5a54b67598efda2c7ccc7c50c3c253b16f4acc2ff4d9a49558df81d"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "dced0ea880bec6222ac9856d3d2ce11b91fd874298f3129c8b5944606dc73668"
+    },
+    {
+      "path": "vitest.config.ts",
+      "sha256": "4f49d01f0120eff8b5bac0c9abc9bf6263c8da9834d288ff884c1e397436209f"
+    }
+  ],
+  "signature": "lJ0KC8KpEBTbVnWfxyIdooJSnH5AOvUhaSetW3OGDkDhiWBxtAf8XcKD30/HiW/4ZZPxpHPGL3wzvrdINqn0AQ=="
+}
