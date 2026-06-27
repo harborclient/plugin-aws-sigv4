@@ -1,4 +1,10 @@
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/runtime/reactHost.js
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/reactHost.js
 var hostReact = null;
 function setHostReact(react) {
   hostReact = react;
@@ -12,12 +18,29 @@ function requireHostReact() {
   return hostReact;
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/runtime/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/index.js
 function installReact(react) {
   setHostReact(react);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/runtime/react.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/react.js
+var react_exports = {};
+__export(react_exports, {
+  cloneElement: () => cloneElement,
+  createContext: () => createContext,
+  createElement: () => createElement,
+  forwardRef: () => forwardRef,
+  isValidElement: () => isValidElement,
+  useCallback: () => useCallback,
+  useContext: () => useContext,
+  useEffect: () => useEffect,
+  useId: () => useId,
+  useLayoutEffect: () => useLayoutEffect,
+  useMemo: () => useMemo,
+  useRef: () => useRef,
+  useState: () => useState,
+  useSyncExternalStore: () => useSyncExternalStore
+});
 function hook(name) {
   const react = requireHostReact();
   const fn = react[name];
@@ -41,17 +64,74 @@ function useMemo(factory, deps) {
 function useRef(initialValue) {
   return hook("useRef")(initialValue);
 }
+function useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot) {
+  return hook("useSyncExternalStore")(subscribe, getSnapshot, getServerSnapshot);
+}
+function forwardRef(render3) {
+  return hook("forwardRef")(render3);
+}
 function cloneElement(element, props, ...children) {
   return hook("cloneElement")(element, props, ...children);
 }
 function isValidElement(element) {
   return hook("isValidElement")(element);
 }
+function createContext(defaultValue) {
+  return hook("createContext")(defaultValue);
+}
+function useContext(context) {
+  return hook("useContext")(context);
+}
+function useId() {
+  return hook("useId")();
+}
+function useLayoutEffect(effect, deps) {
+  return hook("useLayoutEffect")(effect, deps);
+}
 function createElement(type, props, ...children) {
   return hook("createElement")(type, props, ...children);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/runtime/jsx-runtime.js
+// src/shims/react.ts
+var hostReact2 = null;
+function installReactShim(react) {
+  hostReact2 = react;
+}
+function requireHostReact2() {
+  if (hostReact2 == null) {
+    throw new Error(
+      "Plugin React shim is not installed. Call installReactShim(hc.react) at the start of activate()."
+    );
+  }
+  return hostReact2;
+}
+function forwardRef2(render3) {
+  let forwarded = null;
+  function LazyForwardRef(props, ref) {
+    const react = requireHostReact2();
+    if (forwarded === null) {
+      forwarded = react.forwardRef(render3);
+    }
+    return react.createElement(forwarded, { ...props, ref });
+  }
+  const displayName = render3.displayName ?? render3.name ?? "Component";
+  LazyForwardRef.displayName = `ForwardRef(${displayName})`;
+  return LazyForwardRef;
+}
+var defaultExport = new Proxy(react_exports, {
+  get(target, prop, receiver) {
+    if (prop === "forwardRef") {
+      return forwardRef2;
+    }
+    if (prop in target) {
+      return Reflect.get(target, prop, receiver);
+    }
+    return requireHostReact2()[prop];
+  }
+});
+var react_default = defaultExport;
+
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/jsx-runtime.js
 var Fragment = Symbol.for("@harborclient/sdk.Fragment");
 function build(type, props, key) {
   const react = requireHostReact();
@@ -65,7 +145,7 @@ function build(type, props, key) {
 var jsx = build;
 var jsxs = build;
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/Button/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Button/index.js
 var VARIANT_CLASSES = {
   primary: "cursor-pointer rounded-md border border-transparent bg-accent px-3 py-1 text-[15px] font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
   secondary: "cursor-pointer rounded-md border border-separator bg-control px-3 py-1 text-[15px] text-text shadow-sm hover:bg-selection disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
@@ -80,7 +160,7 @@ function Button({ variant = "primary", className, type = "button", ...props }) {
   return jsx("button", { type, className: classes, ...props });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/FieldError/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FieldError/index.js
 function spacingClasses(spacing) {
   switch (spacing) {
     case "section":
@@ -99,9 +179,6 @@ function FieldError({ children, id, spacing = "field", roleAlert = false, classN
   const classes = className ? `${base} ${className}` : base;
   return jsx("p", { id, className: classes, role: roleAlert ? "alert" : void 0, children });
 }
-
-// node_modules/.pnpm/@fortawesome+react-fontawesome@3.3.1_@fortawesome+fontawesome-svg-core@7.3.0_react@19.2.7/node_modules/@fortawesome/react-fontawesome/dist/index.js
-import React, { useId, useMemo as useMemo2 } from "react";
 
 // node_modules/.pnpm/@fortawesome+fontawesome-svg-core@7.3.0/node_modules/@fortawesome/fontawesome-svg-core/index.mjs
 function _arrayLikeToArray(r4, a3) {
@@ -3545,7 +3622,6 @@ var text = api.text;
 var counter = api.counter;
 
 // node_modules/.pnpm/@fortawesome+react-fontawesome@3.3.1_@fortawesome+fontawesome-svg-core@7.3.0_react@19.2.7/node_modules/@fortawesome/react-fontawesome/dist/index.js
-import { jsx as jsx2 } from "react/jsx-runtime";
 function _isNumerical(object) {
   object = object - 0;
   return object === object;
@@ -3559,7 +3635,7 @@ function camelize(string) {
   });
   return string.charAt(0).toLowerCase() + string.slice(1);
 }
-var createGradientStops = (stop, index) => React.createElement("stop", {
+var createGradientStops = (stop, index) => react_default.createElement("stop", {
   key: `${index}-${stop.offset}`,
   offset: stop.offset,
   stopColor: stop.color,
@@ -3679,7 +3755,7 @@ function convert(createElement3, element, extraProps = {}) {
   }
   return createElement3(element.tag, { ...attrs, ...remaining }, ...children);
 }
-var makeReactConverter = convert.bind(null, React.createElement);
+var makeReactConverter = convert.bind(null, react_default.createElement);
 var useAccessibilityId = (id, hasAccessibleProps) => {
   const generatedId = useId();
   return id || (hasAccessibleProps ? generatedId : void 0);
@@ -3895,7 +3971,7 @@ var DEFAULT_PROPS = {
   widthAuto: false
 };
 var DEFAULT_PROP_KEYS = new Set(Object.keys(DEFAULT_PROPS));
-var FontAwesomeIcon = React.forwardRef((props, ref) => {
+var FontAwesomeIcon = react_default.forwardRef((props, ref) => {
   const allProps = { ...DEFAULT_PROPS, ...props };
   const {
     icon: iconArgs,
@@ -3942,7 +4018,7 @@ var FontAwesomeIcon = React.forwardRef((props, ref) => {
 FontAwesomeIcon.displayName = "FontAwesomeIcon";
 var DEFAULT_CLASSNAMES = `${LAYER_CLASSES.default} ${STYLE_CLASSES.fixedWidth}`;
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/FaIcon/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FaIcon/index.js
 function FaIcon({ icon: icon3, className = "h-3.5 w-3.5", title }) {
   return createElement(FontAwesomeIcon, {
     icon: icon3,
@@ -5841,7 +5917,7 @@ var e3 = { airline: { airline: [{ name: `Aegean Airlines`, iataCode: `A3` }, { n
 // node_modules/.pnpm/@faker-js+faker@10.5.0/node_modules/@faker-js/faker/dist/locale/en.js
 var r3 = new yt({ locale: [e3, Ct] });
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/variables/dynamic.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/variables/dynamic.js
 function categoryImageUrl(category) {
   return r3.image.urlLoremFlickr({ category });
 }
@@ -6348,7 +6424,7 @@ function resolveDynamicVariable(key) {
 }
 var DYNAMIC_VARIABLE_NAMES = Object.keys(DYNAMIC_VARIABLES).sort();
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/variables/tokens.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/variables/tokens.js
 var VARIABLE_NAME_CHARS = "\\w$.-";
 var VARIABLE_TOKEN_PATTERN = new RegExp(`\\{\\{\\s*([${VARIABLE_NAME_CHARS}]+)\\s*\\}\\}`, "g");
 function variableLookup(variables) {
@@ -6375,7 +6451,7 @@ function resolveVariable(key, variables) {
   return variableLookup(variables).get(key);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/forms/classes.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/classes.js
 var fieldFrame = "overflow-hidden rounded-md border border-separator bg-field";
 var field = "rounded-md border border-separator bg-field px-2 py-1 text-[15px] text-text app-no-drag";
 var surfaceField = "w-full rounded-md border border-separator bg-field px-3 py-2 text-[14px] text-text";
@@ -6394,18 +6470,18 @@ function mergeFieldClasses(variant, className) {
   return void 0;
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/forms/Input.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/Input.js
 function Input({ ref, variant = "control", type, className, ...props }) {
   const resolvedVariant = type === "checkbox" || type === "radio" ? "plain" : variant;
   return jsx("input", { ref, type, className: mergeFieldClasses(resolvedVariant, className), ...props });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/forms/Select.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/Select.js
 function Select({ ref, variant = "control", className, children, ...props }) {
   return jsx("select", { ref, className: mergeFieldClasses(variant, className), ...props, children });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/VariableInput/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/VariableInput/index.js
 function VariableInput({ value, onChange: onChange2, variables, placeholder, onKeyDown, className = "", wrapperClassName, onEditVariable, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }) {
   const inputRef = useRef(null);
   const backdropRef = useRef(null);
@@ -6464,7 +6540,7 @@ function VariableInput({ value, onChange: onChange2, variables, placeholder, onK
   }, children: "Edit value" })] })] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/FormGroup/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FormGroup/index.js
 function labelClasses(tone, srOnly, inline) {
   const base = "text-[14px]";
   const visibility = srOnly ? "sr-only" : "";
@@ -6515,7 +6591,7 @@ function FormGroup({ label, children, htmlFor, description, error, errorId, layo
   return jsxs("div", { className: wrapperClasses, children: [jsxs("label", { htmlFor, className: "flex flex-col gap-1", children: [jsx("span", { className: labelClasses(labelTone, srOnly, false), children: label }), control, description != null && description !== "" ? jsx("p", { className: "m-0 text-[14px] text-muted", children: description }) : null] }), resolvedErrorId ? jsx(FieldError, { id: resolvedErrorId, spacing: "field", children: error }) : null] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/useDialogFocus.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/useDialogFocus.js
 var FOCUSABLE_SELECTOR = 'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 function getFocusableElements(container) {
   const candidates = Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR));
@@ -6574,19 +6650,19 @@ function useDialogFocus(panelRef) {
   }, [panelRef]);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/Modal/ModalHeader.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/ModalHeader.js
 function ModalHeader({ titleId, title, description, headerActions, closeDisabled = false, onClose }) {
   return jsxs("div", { className: "flex flex-wrap items-center gap-2 border-b border-separator px-4 py-4", children: [jsxs("div", { className: "min-w-0 flex-1", children: [jsx("h2", { id: titleId, className: "m-0 flex flex-wrap items-center gap-2 text-[17px] font-semibold text-text", children: title }), description ? jsx("p", { className: "m-0 mt-1 text-[14px] text-muted", children: description }) : null] }), jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [headerActions, jsx(Button, { type: "button", variant: "icon", className: "shrink-0 opacity-100", "aria-label": "Close", disabled: closeDisabled, onClick: onClose, children: jsx(FaIcon, { icon: faXmark, className: "h-4 w-4" }) })] })] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/Modal/ModalFooter.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/ModalFooter.js
 function ModalFooter({ children, spaced = false, className }) {
   const base = spaced ? "mt-4 flex justify-end gap-2" : "flex justify-end gap-2";
   const classes = className ? `${base} ${className}` : base;
   return jsx("div", { className: classes, children });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/Modal/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/index.js
 function Modal({ onClose, className = "w-96", overlayClassName, disableEscape = false, title, description, headerActions, closeDisabled = false, labelledBy, label, children }) {
   const panelRef = useRef(null);
   useDialogFocus(panelRef);
@@ -6606,7 +6682,7 @@ function Modal({ onClose, className = "w-96", overlayClassName, disableEscape = 
   return jsx("div", { className: overlayClass, onClick: onClose, children: jsx("div", { ref: panelRef, role: "dialog", "aria-modal": "true", "aria-labelledby": labelledBy, "aria-label": label, className: panelClass, onClick: (event) => event.stopPropagation(), children: title && labelledBy ? jsxs(Fragment, { children: [jsx(ModalHeader, { titleId: labelledBy, title, description, headerActions, closeDisabled, onClose }), jsx("div", { className: "flex-1 overflow-y-auto p-4", children })] }) : children }) });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/components/StatusMessage/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/StatusMessage/index.js
 function StatusMessage({ children, live = true, id, className }) {
   const base = "text-[14px] text-muted";
   const classes = className ? `${base} ${className}` : base;
@@ -6756,26 +6832,18 @@ async function syncConfigToMain(hc, index) {
 }
 async function saveCollectionAwsConfig(hc, collectionId, config2) {
   await hc.storage.set(collectionStorageKey(collectionId), config2);
-  const index = registerCollectionInIndex(
-    await loadConfigIndex(hc),
-    collectionId
-  );
+  const index = registerCollectionInIndex(await loadConfigIndex(hc), collectionId);
   await saveConfigIndex(hc, index);
 }
 async function saveRequestAwsSettings(hc, requestKey, settings) {
   await hc.storage.set(requestKey, settings);
-  const index = registerRequestKeyInIndex(
-    await loadConfigIndex(hc),
-    requestKey
-  );
+  const index = registerRequestKeyInIndex(await loadConfigIndex(hc), requestKey);
   await saveConfigIndex(hc, index);
 }
 
 // src/components/CollectionAwsTab.tsx
 function CollectionAwsTab({ context, hc }) {
-  const [config2, setConfig] = useState(
-    defaultCollectionAwsConfig()
-  );
+  const [config2, setConfig] = useState(defaultCollectionAwsConfig());
   const [busy, setBusy] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
@@ -6819,9 +6887,7 @@ function CollectionAwsTab({ context, hc }) {
         setSaved(true);
         hc.ui.showToast("AWS credentials saved");
       } catch (submitError) {
-        setError(
-          submitError instanceof Error ? submitError.message : String(submitError)
-        );
+        setError(submitError instanceof Error ? submitError.message : String(submitError));
       } finally {
         setSaving(false);
       }
@@ -6829,118 +6895,111 @@ function CollectionAwsTab({ context, hc }) {
     [config2, context.collectionId, context.readOnly, hc]
   );
   const disabled2 = busy || saving || context.readOnly;
-  return /* @__PURE__ */ jsxs(
-    "form",
-    {
-      className: "max-w-xl space-y-4",
-      onSubmit: (event) => void handleSubmit(event),
-      children: [
-        /* @__PURE__ */ jsx("p", { className: "text-[14px] text-muted", children: "Configure default AWS credentials for requests in this collection. Per-request overrides are available on the AWS SigV4 request tab." }),
-        /* @__PURE__ */ jsxs("fieldset", { disabled: disabled2, className: "m-0 space-y-4 border-0 p-0", children: [
-          /* @__PURE__ */ jsx(
-            FormGroup,
-            {
-              label: "Access Key ID",
-              htmlFor: accessKeyId,
-              error: error ?? void 0,
-              children: /* @__PURE__ */ jsx(
-                VariableInput,
-                {
-                  id: accessKeyId,
-                  variables: [],
-                  value: config2.accessKeyId,
-                  wrapperClassName: `w-full ${fieldFrame}`,
-                  className: "font-mono",
-                  onChange: (value) => {
-                    setConfig((current) => ({
-                      ...current,
-                      accessKeyId: value
-                    }));
-                    setSaved(false);
-                  }
-                }
-              )
+  return /* @__PURE__ */ jsxs("form", { className: "max-w-xl space-y-4", onSubmit: (event) => void handleSubmit(event), children: [
+    /* @__PURE__ */ jsx("p", { className: "text-[14px] text-muted", children: "Configure default AWS credentials for requests in this collection. Per-request overrides are available on the AWS SigV4 request tab." }),
+    /* @__PURE__ */ jsxs("fieldset", { disabled: disabled2, className: "m-0 space-y-4 border-0 p-0", children: [
+      /* @__PURE__ */ jsx(FormGroup, { label: "Access Key ID", htmlFor: accessKeyId, error: error ?? void 0, children: /* @__PURE__ */ jsx(
+        VariableInput,
+        {
+          id: accessKeyId,
+          variables: [],
+          value: config2.accessKeyId,
+          wrapperClassName: `w-full ${fieldFrame}`,
+          className: "font-mono",
+          onChange: (value) => {
+            setConfig((current) => ({
+              ...current,
+              accessKeyId: value
+            }));
+            setSaved(false);
+          }
+        }
+      ) }),
+      /* @__PURE__ */ jsx(FormGroup, { label: "Secret Access Key", htmlFor: secretKeyId, children: /* @__PURE__ */ jsx(
+        Input,
+        {
+          id: secretKeyId,
+          type: "password",
+          variant: "control",
+          className: "w-full font-mono",
+          value: config2.secretAccessKey,
+          autoComplete: "off",
+          onChange: (event) => {
+            setConfig((current) => ({
+              ...current,
+              secretAccessKey: event.target.value
+            }));
+            setSaved(false);
+          }
+        }
+      ) }),
+      /* @__PURE__ */ jsxs("div", { className: "grid gap-4 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx(FormGroup, { label: "Region", htmlFor: `aws-region-${context.collectionId}`, children: /* @__PURE__ */ jsx(
+          VariableInput,
+          {
+            id: `aws-region-${context.collectionId}`,
+            variables: [],
+            value: config2.region,
+            placeholder: "us-east-1",
+            wrapperClassName: `w-full ${fieldFrame}`,
+            onChange: (value) => {
+              setConfig((current) => ({
+                ...current,
+                region: value
+              }));
+              setSaved(false);
             }
-          ),
-          /* @__PURE__ */ jsx(FormGroup, { label: "Secret Access Key", htmlFor: secretKeyId, children: /* @__PURE__ */ jsx(
-            Input,
+          }
+        ) }),
+        /* @__PURE__ */ jsx(FormGroup, { label: "Service", htmlFor: `aws-service-${context.collectionId}`, children: /* @__PURE__ */ jsx(
+          VariableInput,
+          {
+            id: `aws-service-${context.collectionId}`,
+            variables: [],
+            value: config2.service,
+            placeholder: "execute-api",
+            wrapperClassName: `w-full ${fieldFrame}`,
+            onChange: (value) => {
+              setConfig((current) => ({
+                ...current,
+                service: value
+              }));
+              setSaved(false);
+            }
+          }
+        ) })
+      ] }),
+      /* @__PURE__ */ jsx(
+        FormGroup,
+        {
+          label: "Session token (optional)",
+          htmlFor: `aws-session-token-${context.collectionId}`,
+          children: /* @__PURE__ */ jsx(
+            VariableInput,
             {
-              id: secretKeyId,
-              type: "password",
-              variant: "control",
-              className: "w-full font-mono",
-              value: config2.secretAccessKey,
-              autoComplete: "off",
-              onChange: (event) => {
+              id: `aws-session-token-${context.collectionId}`,
+              variables: [],
+              value: config2.sessionToken ?? "",
+              wrapperClassName: `w-full ${fieldFrame}`,
+              className: "font-mono",
+              onChange: (value) => {
                 setConfig((current) => ({
                   ...current,
-                  secretAccessKey: event.target.value
+                  sessionToken: value
                 }));
                 setSaved(false);
               }
             }
-          ) }),
-          /* @__PURE__ */ jsxs("div", { className: "grid gap-4 sm:grid-cols-2", children: [
-            /* @__PURE__ */ jsx(FormGroup, { label: "Region", htmlFor: `aws-region-${context.collectionId}`, children: /* @__PURE__ */ jsx(
-              VariableInput,
-              {
-                id: `aws-region-${context.collectionId}`,
-                variables: [],
-                value: config2.region,
-                placeholder: "us-east-1",
-                wrapperClassName: `w-full ${fieldFrame}`,
-                onChange: (value) => {
-                  setConfig((current) => ({
-                    ...current,
-                    region: value
-                  }));
-                  setSaved(false);
-                }
-              }
-            ) }),
-            /* @__PURE__ */ jsx(FormGroup, { label: "Service", htmlFor: `aws-service-${context.collectionId}`, children: /* @__PURE__ */ jsx(
-              VariableInput,
-              {
-                id: `aws-service-${context.collectionId}`,
-                variables: [],
-                value: config2.service,
-                placeholder: "execute-api",
-                wrapperClassName: `w-full ${fieldFrame}`,
-                onChange: (value) => {
-                  setConfig((current) => ({
-                    ...current,
-                    service: value
-                  }));
-                  setSaved(false);
-                }
-              }
-            ) })
-          ] }),
-          /* @__PURE__ */ jsx(
-            FormGroup,
-            {
-              label: "Session token (optional)",
-              htmlFor: `aws-session-token-${context.collectionId}`,
-              children: /* @__PURE__ */ jsx(
-                VariableInput,
-                {
-                  id: `aws-session-token-${context.collectionId}`,
-                  variables: [],
-                  value: config2.sessionToken ?? "",
-                  wrapperClassName: `w-full ${fieldFrame}`,
-                  className: "font-mono",
-                  onChange: (value) => {
-                    setConfig((current) => ({
-                      ...current,
-                      sessionToken: value
-                    }));
-                    setSaved(false);
-                  }
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsx(FormGroup, { label: "Auto-sign matching requests on Send", htmlFor: autoSignId, layout: "checkbox", children: /* @__PURE__ */ jsx(
+          )
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        FormGroup,
+        {
+          label: "Auto-sign matching requests on Send",
+          htmlFor: autoSignId,
+          layout: "checkbox",
+          children: /* @__PURE__ */ jsx(
             Input,
             {
               id: autoSignId,
@@ -6954,16 +7013,16 @@ function CollectionAwsTab({ context, hc }) {
                 setSaved(false);
               }
             }
-          ) }),
-          saved ? /* @__PURE__ */ jsx(StatusMessage, { children: "Settings saved." }) : null,
-          !context.readOnly ? /* @__PURE__ */ jsx(Button, { type: "submit", variant: "primary", children: saving ? "Saving\u2026" : "Save AWS settings" }) : null
-        ] })
-      ]
-    }
-  );
+          )
+        }
+      ),
+      saved ? /* @__PURE__ */ jsx(StatusMessage, { children: "Settings saved." }) : null,
+      !context.readOnly ? /* @__PURE__ */ jsx(Button, { type: "submit", variant: "primary", children: saving ? "Saving\u2026" : "Save AWS settings" }) : null
+    ] })
+  ] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/http/substitute.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/http/substitute.js
 function substituteVariables2(text2, runtimeVars) {
   const pattern = new RegExp(VARIABLE_TOKEN_PATTERN.source, "g");
   return text2.replace(pattern, (match, key) => {
@@ -6994,7 +7053,7 @@ function substituteKeyValueRows(rows, runtimeVars) {
   }));
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/http/resolveRequest.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/http/resolveRequest.js
 function hasUnsafeHeaderFieldChars(value) {
   for (let index = 0; index < value.length; index += 1) {
     const code = value.charCodeAt(index);
@@ -7154,10 +7213,7 @@ function buildSigningConfigFromProfiles(collection, requestSettings, runtimeVari
   if (requestSettings.collectionId == null) {
     return null;
   }
-  const resolvedCollection = resolveCredentialFields(
-    collection,
-    runtimeVariables
-  );
+  const resolvedCollection = resolveCredentialFields(collection, runtimeVariables);
   const resolvedRequest = resolveCredentialFields(
     {
       accessKeyId: "",
@@ -7218,9 +7274,7 @@ async function previewSignActiveRequest(hc, context, requestSettings) {
   if (!signingConfig) {
     return {
       headers: {},
-      errors: [
-        "Configure AWS credentials in Collection Settings before signing."
-      ]
+      errors: ["Configure AWS credentials in Collection Settings before signing."]
     };
   }
   const resolved = resolveRequest(context);
@@ -7264,7 +7318,7 @@ function subscribeSignPreview(listener2) {
   };
 }
 
-// node_modules/.pnpm/@harborclient+sdk@file+..+harborclient-sdk_@babel+runtime@8.0.0_@codemirror+lint@6.9.7__9b0e1eb1496488477eba7f65e88ab7e8/node_modules/@harborclient/sdk/dist/clipboard.js
+// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/clipboard.js
 async function copyToClipboard(hc, text2, options) {
   await navigator.clipboard.writeText(text2);
   if (options?.toast) {
@@ -7325,9 +7379,7 @@ function SignPreviewModal({ hc }) {
 
 // src/components/RequestAwsTab.tsx
 function RequestAwsTab({ context, hc }) {
-  const [settings, setSettings] = useState(
-    defaultRequestAwsSettings()
-  );
+  const [settings, setSettings] = useState(defaultRequestAwsSettings());
   const [settingsKey, setSettingsKey] = useState("");
   const [collections, setCollections] = useState([]);
   const [loaded2, setLoaded] = useState(false);
@@ -7369,16 +7421,14 @@ function RequestAwsTab({ context, hc }) {
     let cancelled = false;
     setLoaded(false);
     setError(null);
-    void loadRequestSettingsForContext(hc, context).then(
-      ({ key, settings: stored }) => {
-        if (cancelled) {
-          return;
-        }
-        setSettingsKey(key);
-        setSettings(stored);
-        setLoaded(true);
+    void loadRequestSettingsForContext(hc, context).then(({ key, settings: stored }) => {
+      if (cancelled) {
+        return;
       }
-    );
+      setSettingsKey(key);
+      setSettings(stored);
+      setLoaded(true);
+    });
     return () => {
       cancelled = true;
     };
@@ -7401,43 +7451,33 @@ function RequestAwsTab({ context, hc }) {
       }
       showSignPreview(result);
     } catch (previewError) {
-      setError(
-        previewError instanceof Error ? previewError.message : String(previewError)
-      );
+      setError(previewError instanceof Error ? previewError.message : String(previewError));
     } finally {
       setSigning(false);
     }
   }, [context, hc, settings]);
   return /* @__PURE__ */ jsxs("div", { className: "space-y-4 p-4", children: [
     /* @__PURE__ */ jsx("p", { className: "text-[14px] text-muted", children: "Choose which collection credentials to use for this request and optionally override region or service. Signatures are applied automatically on Send when auto-sign is enabled." }),
-    /* @__PURE__ */ jsx(
-      FormGroup,
+    /* @__PURE__ */ jsx(FormGroup, { label: "Credential profile", htmlFor: profileId, error: error ?? void 0, children: /* @__PURE__ */ jsxs(
+      Select,
       {
-        label: "Credential profile",
-        htmlFor: profileId,
-        error: error ?? void 0,
-        children: /* @__PURE__ */ jsxs(
-          Select,
-          {
-            id: profileId,
-            variant: "control",
-            className: "w-full max-w-md",
-            value: settings.collectionId ?? "",
-            onChange: (event) => {
-              const value = event.target.value;
-              setSettings((current) => ({
-                ...current,
-                collectionId: value === "" ? null : Number(value)
-              }));
-            },
-            children: [
-              /* @__PURE__ */ jsx("option", { value: "", children: "Select a collection\u2026" }),
-              collections.map((entry) => /* @__PURE__ */ jsx("option", { value: entry.id, children: entry.label }, entry.id))
-            ]
-          }
-        )
+        id: profileId,
+        variant: "control",
+        className: "w-full max-w-md",
+        value: settings.collectionId ?? "",
+        onChange: (event) => {
+          const value = event.target.value;
+          setSettings((current) => ({
+            ...current,
+            collectionId: value === "" ? null : Number(value)
+          }));
+        },
+        children: [
+          /* @__PURE__ */ jsx("option", { value: "", children: "Select a collection\u2026" }),
+          collections.map((entry) => /* @__PURE__ */ jsx("option", { value: entry.id, children: entry.label }, entry.id))
+        ]
       }
-    ),
+    ) }),
     collections.length === 0 ? /* @__PURE__ */ jsx(StatusMessage, { children: "Save AWS credentials under Collection Settings \u2192 AWS SigV4 first." }) : null,
     /* @__PURE__ */ jsxs("div", { className: "grid gap-4 sm:grid-cols-2", children: [
       /* @__PURE__ */ jsx(FormGroup, { label: "Region override", htmlFor: "aws-region-override", children: /* @__PURE__ */ jsx(
@@ -7490,28 +7530,20 @@ function RequestAwsTab({ context, hc }) {
         }
       }
     ) }),
-    /* @__PURE__ */ jsx(
-      FormGroup,
+    /* @__PURE__ */ jsx(FormGroup, { label: "Auto-sign this request on Send", htmlFor: autoSignId, layout: "checkbox", children: /* @__PURE__ */ jsx(
+      Input,
       {
-        label: "Auto-sign this request on Send",
-        htmlFor: autoSignId,
-        layout: "checkbox",
-        children: /* @__PURE__ */ jsx(
-          Input,
-          {
-            id: autoSignId,
-            type: "checkbox",
-            checked: settings.autoSign,
-            onChange: (event) => {
-              setSettings((current) => ({
-                ...current,
-                autoSign: event.target.checked
-              }));
-            }
-          }
-        )
+        id: autoSignId,
+        type: "checkbox",
+        checked: settings.autoSign,
+        onChange: (event) => {
+          setSettings((current) => ({
+            ...current,
+            autoSign: event.target.checked
+          }));
+        }
       }
-    ),
+    ) }),
     /* @__PURE__ */ jsx(
       Button,
       {
@@ -7528,7 +7560,13 @@ function RequestAwsTab({ context, hc }) {
 
 // src/renderer.tsx
 function activate(hc) {
+  if (hc.react == null) {
+    throw new Error(
+      "HarborClient >=1.9.0 is required for plugin UI (hc.react is missing). Update HarborClient or disable this plugin."
+    );
+  }
   installReact(hc.react);
+  installReactShim(hc.react);
   function CollectionAwsTabHost({
     context
   }) {
@@ -7566,10 +7604,7 @@ async function runToolbarSign(hc) {
     return;
   }
   try {
-    const { settings } = await loadRequestSettingsForContext(
-      hc,
-      bridge.context
-    );
+    const { settings } = await loadRequestSettingsForContext(hc, bridge.context);
     const result = await previewSignActiveRequest(hc, bridge.context, settings);
     if (result.errors?.length) {
       hc.ui.showToast(result.errors[0] ?? "Signing failed.");

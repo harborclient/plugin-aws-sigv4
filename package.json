@@ -1,14 +1,14 @@
 {
   "name": "@harborclient/plugin-aws-sigv4",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "build": "pnpm build:main && pnpm build:renderer",
     "build:main": "esbuild src/main.ts --bundle --outfile=dist/main.js --format=esm --platform=browser --main-fields=module,main",
-    "build:renderer": "esbuild src/renderer.tsx --bundle --outfile=dist/renderer.js --format=esm --jsx=automatic --jsx-import-source=@harborclient/sdk --external:react --external:react-dom",
+    "build:renderer": "esbuild src/renderer.tsx --bundle --outfile=dist/renderer.js --format=esm --jsx=automatic --jsx-import-source=@harborclient/sdk --alias:react=./src/shims/react.ts --alias:react/jsx-runtime=@harborclient/sdk/jsx-runtime --alias:react/jsx-dev-runtime=@harborclient/sdk/jsx-dev-runtime",
     "dev": "pnpm dev:main & pnpm dev:renderer",
     "dev:main": "esbuild src/main.ts --bundle --outfile=dist/main.js --format=esm --platform=browser --main-fields=module,main --watch",
-    "dev:renderer": "esbuild src/renderer.tsx --bundle --outfile=dist/renderer.js --format=esm --jsx=automatic --jsx-import-source=@harborclient/sdk --external:react --external:react-dom --watch",
+    "dev:renderer": "esbuild src/renderer.tsx --bundle --outfile=dist/renderer.js --format=esm --jsx=automatic --jsx-import-source=@harborclient/sdk --alias:react=./src/shims/react.ts --alias:react/jsx-runtime=@harborclient/sdk/jsx-runtime --alias:react/jsx-dev-runtime=@harborclient/sdk/jsx-dev-runtime --watch",
     "lint": "eslint --cache .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -21,12 +21,12 @@
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.2.0",
+    "@harborclient/sdk": "^0.5.0",
     "@smithy/protocol-http": "^5.5.2",
     "@smithy/signature-v4": "^5.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@harborclient/sdk": "^0.5.0",
     "@types/node": "^26.0.1",
     "@types/react": "^19.1.8",
     "esbuild": "^0.25.0",
