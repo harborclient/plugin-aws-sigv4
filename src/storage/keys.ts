@@ -1,10 +1,10 @@
-import type { PluginHttpRequest } from "@harborclient/sdk";
-import type { RequestDraft } from "@harborclient/sdk";
+import type { PluginHttpRequest } from '@harborclient/sdk';
+import type { RequestDraft } from '@harborclient/sdk';
 
 /**
  * Storage key for the config index manifest.
  */
-export const CONFIG_INDEX_KEY = "_aws-config-index";
+export const CONFIG_INDEX_KEY = '_aws-config-index';
 
 /**
  * Builds the storage key for collection-level AWS credentials.
@@ -29,9 +29,7 @@ export function requestStorageKey(requestId: number): string {
  *
  * @param draft - Active request draft from the editor.
  */
-export function draftStorageKey(
-  draft: Pick<RequestDraft, "method" | "url">
-): string {
+export function draftStorageKey(draft: Pick<RequestDraft, 'method' | 'url'>): string {
   return `draft:${draft.method}:${draft.url}`;
 }
 

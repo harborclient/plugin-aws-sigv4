@@ -1,12 +1,8 @@
-import type {
-  ConfigSnapshot,
-  RequestAwsSettings,
-  SignPayload,
-  SigningConfig,
-} from "./types";
-import type { PluginHttpRequest } from "@harborclient/sdk";
-import { applySignedHeaders, signRequest } from "./signing/signRequest";
-import { resolveRequestStorageKey, requestStorageKey } from "./storage/keys";
+import type { ConfigSnapshot, RequestAwsSettings, SignPayload, SigningConfig } from './types';
+import type { PluginHttpRequest } from '@harborclient/sdk';
+import { resolveCredentialFields } from './utils/variables';
+import { applySignedHeaders, signRequest } from './signing/signRequest';
+import { resolveRequestStorageKey, requestStorageKey } from './storage/keys';
 
 /**
  * In-memory config snapshot synced from the renderer half of the plugin.
@@ -15,6 +11,7 @@ let configSnapshot: ConfigSnapshot = {
   collections: {},
   requests: {},
   drafts: {},
+  runtimeVariables: {}
 };
 
 /**
@@ -27,6 +24,7 @@ export function setConfigSnapshot(snapshot: ConfigSnapshot): void {
     collections: { ...snapshot.collections },
     requests: { ...snapshot.requests },
     drafts: { ...snapshot.drafts },
+    runtimeVariables: snapshot.runtimeVariables ? { ...snapshot.runtimeVariables } : {}
   };
 }
 
@@ -43,7 +41,7 @@ export function getConfigSnapshot(): ConfigSnapshot {
  * @param value - Raw collection id from storage keys or settings.
  */
 function parseCollectionId(value: unknown): number | null {
-  if (typeof value === "number" && Number.isFinite(value)) {
+  if (typeof value === 'number' && Number.isFinite(value)) {
     return value;
   }
   return null;
@@ -54,12 +52,9 @@ function parseCollectionId(value: unknown): number | null {
  *
  * @param request - Outgoing request snapshot from the host.
  */
-export function resolveRequestSettings(
-  request: PluginHttpRequest
-): RequestAwsSettings | undefined {
+export function resolveRequestSettings(request: PluginHttpRequest): RequestAwsSettings | undefined {
   if (request.sourceRequestId != null) {
-    const byId =
-      configSnapshot.requests[requestStorageKey(request.sourceRequestId)];
+    const byId = configSnapshot.requests[requestStorageKey(request.sourceRequestId)];
     if (byId) {
       return byId;
     }
@@ -89,13 +84,25 @@ export function buildSigningConfig(
     return null;
   }
 
+  const runtimeVars = configSnapshot.runtimeVariables ?? {};
+  const resolvedCollection = resolveCredentialFields(collection, runtimeVars);
+  const resolvedRequest = resolveCredentialFields(
+    {
+      accessKeyId: '',
+      secretAccessKey: '',
+      region: requestSettings.region ?? '',
+      service: requestSettings.service ?? '',
+      sessionToken: requestSettings.sessionToken
+    },
+    runtimeVars
+  );
+
   return {
-    accessKeyId: collection.accessKeyId,
-    secretAccessKey: collection.secretAccessKey,
-    region: requestSettings.region?.trim() || collection.region,
-    service: requestSettings.service?.trim() || collection.service,
-    sessionToken:
-      requestSettings.sessionToken?.trim() || collection.sessionToken?.trim(),
+    accessKeyId: resolvedCollection.accessKeyId,
+    secretAccessKey: resolvedCollection.secretAccessKey,
+    region: resolvedRequest.region?.trim() || resolvedCollection.region,
+    service: resolvedRequest.service?.trim() || resolvedCollection.service,
+    sessionToken: resolvedRequest.sessionToken?.trim() || resolvedCollection.sessionToken?.trim()
   };
 }
 
@@ -125,8 +132,7 @@ export async function applyAutoSign(request: PluginHttpRequest): Promise<void> {
   }
 
   const collectionId = parseCollectionId(requestSettings.collectionId);
-  const collection =
-    collectionId != null ? configSnapshot.collections[collectionId] : undefined;
+  const collection = collectionId != null ? configSnapshot.collections[collectionId] : undefined;
   if (!collection?.autoSign) {
     return;
   }

@@ -1,4 +1,4 @@
-import type { SignResult } from "../types";
+import type { SignResult } from '../types';
 
 let preview: SignResult | null = null;
 const listeners = new Set<() => void>();

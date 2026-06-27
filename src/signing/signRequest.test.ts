@@ -1,52 +1,50 @@
-import { describe, expect, it, vi, afterEach } from "vitest";
-import { signRequest } from "./signRequest";
+import { describe, expect, it, vi, afterEach } from 'vitest';
+import { signRequest } from './signRequest';
 
-describe("signRequest", () => {
+describe('signRequest', () => {
   afterEach(() => {
     vi.useRealTimers();
   });
 
-  it("signs a GET request with a known test vector", async () => {
+  it('signs a GET request with a known test vector', async () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date("2015-08-30T12:36:00Z"));
+    vi.setSystemTime(new Date('2015-08-30T12:36:00Z'));
 
     const result = await signRequest(
       {
-        method: "GET",
-        url: "https://example.amazonaws.com/",
+        method: 'GET',
+        url: 'https://example.amazonaws.com/',
         headers: {},
-        body: "",
+        body: ''
       },
       {
-        accessKeyId: "AKIDEXAMPLE",
-        secretAccessKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-        region: "us-east-1",
-        service: "iam",
+        accessKeyId: 'AKIDEXAMPLE',
+        secretAccessKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+        region: 'us-east-1',
+        service: 'iam'
       }
     );
 
     expect(result.errors).toBeUndefined();
-    expect(
-      result.headers.Authorization ?? result.headers.authorization
-    ).toMatch(/^AWS4-HMAC-SHA256 Credential=/);
-    expect(result.headers["x-amz-date"] ?? result.headers["X-Amz-Date"]).toBe(
-      "20150830T123600Z"
+    expect(result.headers.Authorization ?? result.headers.authorization).toMatch(
+      /^AWS4-HMAC-SHA256 Credential=/
     );
+    expect(result.headers['x-amz-date'] ?? result.headers['X-Amz-Date']).toBe('20150830T123600Z');
   });
 
-  it("returns validation errors when credentials are missing", async () => {
+  it('returns validation errors when credentials are missing', async () => {
     const result = await signRequest(
       {
-        method: "GET",
-        url: "https://example.amazonaws.com/",
+        method: 'GET',
+        url: 'https://example.amazonaws.com/',
         headers: {},
-        body: "",
+        body: ''
       },
       {
-        accessKeyId: "",
-        secretAccessKey: "",
-        region: "",
-        service: "",
+        accessKeyId: '',
+        secretAccessKey: '',
+        region: '',
+        service: ''
       }
     );
 
@@ -54,30 +52,29 @@ describe("signRequest", () => {
     expect(result.errors?.length).toBeGreaterThan(0);
   });
 
-  it("includes session token headers when configured", async () => {
+  it('includes session token headers when configured', async () => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date("2015-08-30T12:36:00Z"));
+    vi.setSystemTime(new Date('2015-08-30T12:36:00Z'));
 
     const result = await signRequest(
       {
-        method: "GET",
-        url: "https://example.amazonaws.com/",
+        method: 'GET',
+        url: 'https://example.amazonaws.com/',
         headers: {},
-        body: "",
+        body: ''
       },
       {
-        accessKeyId: "AKIDEXAMPLE",
-        secretAccessKey: "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
-        region: "us-east-1",
-        service: "iam",
-        sessionToken: "SESSIONTOKEN",
+        accessKeyId: 'AKIDEXAMPLE',
+        secretAccessKey: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+        region: 'us-east-1',
+        service: 'iam',
+        sessionToken: 'SESSIONTOKEN'
       }
     );
 
     expect(result.errors).toBeUndefined();
-    expect(
-      result.headers["x-amz-security-token"] ??
-        result.headers["X-Amz-Security-Token"]
-    ).toBe("SESSIONTOKEN");
+    expect(result.headers['x-amz-security-token'] ?? result.headers['X-Amz-Security-Token']).toBe(
+      'SESSIONTOKEN'
+    );
   });
 });

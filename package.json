@@ -1,6 +1,6 @@
 {
   "name": "@harborclient/plugin-aws-sigv4",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "build": "pnpm build:main && pnpm build:renderer",
@@ -9,6 +9,9 @@
     "dev": "pnpm dev:main & pnpm dev:renderer",
     "dev:main": "esbuild src/main.ts --bundle --outfile=dist/main.js --format=esm --platform=browser --main-fields=module,main --watch",
     "dev:renderer": "esbuild src/renderer.tsx --bundle --outfile=dist/renderer.js --format=esm --jsx=automatic --jsx-import-source=@harborclient/sdk --external:react --external:react-dom --watch",
+    "lint": "eslint --cache .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "screenshot": "bash scripts/render-screenshot.sh",
@@ -22,11 +25,16 @@
     "@smithy/signature-v4": "^5.5.2"
   },
   "devDependencies": {
-    "@harborclient/sdk": "^0.4.3",
+    "@eslint/js": "^10.0.1",
+    "@harborclient/sdk": "^0.5.0",
     "@types/node": "^26.0.1",
     "@types/react": "^19.1.8",
     "esbuild": "^0.25.0",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.4",
     "typescript": "^5.8.3",
+    "typescript-eslint": "^8.62.0",
     "vitest": "^4.1.9"
   }
 }

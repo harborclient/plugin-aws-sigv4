@@ -1,4 +1,4 @@
-import type { PluginContext, RequestTabContext } from "@harborclient/sdk";
+import type { PluginContext, RequestTabContext } from '@harborclient/sdk';
 
 /**
  * Active request editor context shared between the request tab and toolbar command.
@@ -22,9 +22,7 @@ let activeBridge: ActiveRequestBridge | null = null;
  *
  * @param bridge - Latest request tab context, or null when the tab unmounts.
  */
-export function setActiveRequestBridge(
-  bridge: ActiveRequestBridge | null
-): void {
+export function setActiveRequestBridge(bridge: ActiveRequestBridge | null): void {
   activeBridge = bridge;
 }
 

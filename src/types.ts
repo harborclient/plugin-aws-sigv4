@@ -1,4 +1,4 @@
-import type { PluginHttpRequest } from "@harborclient/sdk";
+import type { PluginHttpRequest } from '@harborclient/sdk';
 
 /**
  * AWS credentials and defaults stored per collection.
@@ -128,6 +128,14 @@ export interface ConfigSnapshot {
    * Per-draft settings keyed by method/url fingerprint (`draft:GET:https://...`).
    */
   drafts: Record<string, RequestAwsSettings>;
+
+  /**
+   * Last synced merged runtime variables from the active AWS request tab bridge.
+   *
+   * Used to resolve {{variable}} placeholders in credentials during auto-sign on Send.
+   * When the AWS tab was never opened, only dynamic placeholders resolve at send time.
+   */
+  runtimeVariables?: Record<string, string>;
 }
 
 /**

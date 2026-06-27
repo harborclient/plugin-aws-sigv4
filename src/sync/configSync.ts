@@ -2,14 +2,12 @@ import type {
   CollectionAwsConfig,
   ConfigIndex,
   ConfigSnapshot,
-  RequestAwsSettings,
-} from "../types";
-import type { PluginContext } from "@harborclient/sdk";
-import { CONFIG_INDEX_KEY, collectionStorageKey } from "../storage/keys";
-import {
-  parseCollectionAwsConfig,
-  parseRequestAwsSettings,
-} from "../storage/defaults";
+  RequestAwsSettings
+} from '../types';
+import type { PluginContext } from '@harborclient/sdk';
+import { getActiveRequestBridge } from '../components/activeRequestBridge';
+import { CONFIG_INDEX_KEY, collectionStorageKey } from '../storage/keys';
+import { parseCollectionAwsConfig, parseRequestAwsSettings } from '../storage/defaults';
 
 /**
  * Returns an empty config index.
@@ -24,7 +22,7 @@ export function emptyConfigIndex(): ConfigIndex {
  * @param stored - Raw value from plugin storage.
  */
 export function parseConfigIndex(stored: unknown): ConfigIndex {
-  if (!stored || typeof stored !== "object") {
+  if (!stored || typeof stored !== 'object') {
     return emptyConfigIndex();
   }
 
@@ -32,16 +30,14 @@ export function parseConfigIndex(stored: unknown): ConfigIndex {
   return {
     collections: Array.isArray(record.collections)
       ? record.collections.filter(
-          (value): value is number =>
-            typeof value === "number" && Number.isFinite(value)
+          (value): value is number => typeof value === 'number' && Number.isFinite(value)
         )
       : [],
     requestKeys: Array.isArray(record.requestKeys)
       ? record.requestKeys.filter(
-          (value): value is string =>
-            typeof value === "string" && value.length > 0
+          (value): value is string => typeof value === 'string' && value.length > 0
         )
-      : [],
+      : []
   };
 }
 
@@ -51,16 +47,13 @@ export function parseConfigIndex(stored: unknown): ConfigIndex {
  * @param index - Existing config index.
  * @param collectionId - Collection database id.
  */
-export function registerCollectionInIndex(
-  index: ConfigIndex,
-  collectionId: number
-): ConfigIndex {
+export function registerCollectionInIndex(index: ConfigIndex, collectionId: number): ConfigIndex {
   if (index.collections.includes(collectionId)) {
     return index;
   }
   return {
     ...index,
-    collections: [...index.collections, collectionId].sort((a, b) => a - b),
+    collections: [...index.collections, collectionId].sort((a, b) => a - b)
   };
 }
 
@@ -70,16 +63,13 @@ export function registerCollectionInIndex(
  * @param index - Existing config index.
  * @param requestKey - Request or draft storage key.
  */
-export function registerRequestKeyInIndex(
-  index: ConfigIndex,
-  requestKey: string
-): ConfigIndex {
+export function registerRequestKeyInIndex(index: ConfigIndex, requestKey: string): ConfigIndex {
   if (index.requestKeys.includes(requestKey)) {
     return index;
   }
   return {
     ...index,
-    requestKeys: [...index.requestKeys, requestKey],
+    requestKeys: [...index.requestKeys, requestKey]
   };
 }
 
@@ -99,10 +89,7 @@ export async function loadConfigIndex(hc: PluginContext): Promise<ConfigIndex> {
  * @param hc - Renderer plugin context.
  * @param index - Updated config index.
  */
-export async function saveConfigIndex(
-  hc: PluginContext,
-  index: ConfigIndex
-): Promise<void> {
+export async function saveConfigIndex(hc: PluginContext, index: ConfigIndex): Promise<void> {
   await hc.storage.set(CONFIG_INDEX_KEY, index);
   await syncConfigToMain(hc, index);
 }
@@ -128,7 +115,7 @@ export async function buildConfigSnapshot(
   for (const key of index.requestKeys) {
     const stored = await hc.storage.get<RequestAwsSettings>(key);
     const settings = parseRequestAwsSettings(stored);
-    if (key.startsWith("draft:")) {
+    if (key.startsWith('draft:')) {
       drafts[key] = settings;
     } else {
       requests[key] = settings;
@@ -139,18 +126,26 @@ export async function buildConfigSnapshot(
 }
 
 /**
+ * Returns runtime variables from the active AWS request tab bridge, if any.
+ */
+function activeRuntimeVariables(): Record<string, string> | undefined {
+  return getActiveRequestBridge()?.context.variables;
+}
+
+/**
  * Pushes the latest signing configuration snapshot to the main plugin runtime.
  *
  * @param hc - Renderer plugin context.
  * @param index - Optional preloaded config index.
  */
-export async function syncConfigToMain(
-  hc: PluginContext,
-  index?: ConfigIndex
-): Promise<void> {
+export async function syncConfigToMain(hc: PluginContext, index?: ConfigIndex): Promise<void> {
   const resolvedIndex = index ?? (await loadConfigIndex(hc));
   const snapshot = await buildConfigSnapshot(hc, resolvedIndex);
-  await hc.ipc.invoke("syncConfig", snapshot);
+  const runtimeVariables = activeRuntimeVariables();
+  await hc.ipc.invoke('syncConfig', {
+    ...snapshot,
+    ...(runtimeVariables != null ? { runtimeVariables } : {})
+  });
 }
 
 /**
@@ -166,10 +161,7 @@ export async function saveCollectionAwsConfig(
   config: CollectionAwsConfig
 ): Promise<void> {
   await hc.storage.set(collectionStorageKey(collectionId), config);
-  const index = registerCollectionInIndex(
-    await loadConfigIndex(hc),
-    collectionId
-  );
+  const index = registerCollectionInIndex(await loadConfigIndex(hc), collectionId);
   await saveConfigIndex(hc, index);
 }
 
@@ -186,9 +178,6 @@ export async function saveRequestAwsSettings(
   settings: RequestAwsSettings
 ): Promise<void> {
   await hc.storage.set(requestKey, settings);
-  const index = registerRequestKeyInIndex(
-    await loadConfigIndex(hc),
-    requestKey
-  );
+  const index = registerRequestKeyInIndex(await loadConfigIndex(hc), requestKey);
   await saveConfigIndex(hc, index);
 }

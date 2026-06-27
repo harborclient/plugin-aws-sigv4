@@ -1,42 +1,49 @@
-import { resolveRequest } from "@harborclient/sdk/http";
-import type { PluginContext, RequestTabContext } from "@harborclient/sdk";
-import type {
-  CollectionAwsConfig,
-  RequestAwsSettings,
-  SignResult,
-  SigningConfig,
-} from "../types";
-import { collectionStorageKey, draftStorageKey } from "../storage/keys";
-import {
-  parseCollectionAwsConfig,
-  parseRequestAwsSettings,
-} from "../storage/defaults";
-import { loadConfigIndex } from "../sync/configSync";
+import { resolveRequest } from '@harborclient/sdk/http';
+import type { PluginContext, RequestTabContext } from '@harborclient/sdk';
+import type { CollectionAwsConfig, RequestAwsSettings, SignResult, SigningConfig } from '../types';
+import { resolveCredentialFields } from '../utils/variables';
+import { collectionStorageKey, draftStorageKey } from '../storage/keys';
+import { parseCollectionAwsConfig, parseRequestAwsSettings } from '../storage/defaults';
+import { loadConfigIndex } from '../sync/configSync';
 
 /**
  * Builds signing configuration from collection credentials and request overrides.
  *
  * @param collection - Collection-level AWS credentials.
  * @param requestSettings - Per-request overrides.
+ * @param runtimeVariables - Merged runtime variables for {{key}} substitution.
  */
 export function buildSigningConfigFromProfiles(
   collection: CollectionAwsConfig,
-  requestSettings: RequestAwsSettings
+  requestSettings: RequestAwsSettings,
+  runtimeVariables: Record<string, string> = {}
 ): SigningConfig | null {
   if (requestSettings.collectionId == null) {
     return null;
   }
-  if (!collection.accessKeyId.trim() || !collection.secretAccessKey.trim()) {
+
+  const resolvedCollection = resolveCredentialFields(collection, runtimeVariables);
+  const resolvedRequest = resolveCredentialFields(
+    {
+      accessKeyId: '',
+      secretAccessKey: '',
+      region: requestSettings.region ?? '',
+      service: requestSettings.service ?? '',
+      sessionToken: requestSettings.sessionToken
+    },
+    runtimeVariables
+  );
+
+  if (!resolvedCollection.accessKeyId.trim() || !resolvedCollection.secretAccessKey.trim()) {
     return null;
   }
 
   return {
-    accessKeyId: collection.accessKeyId,
-    secretAccessKey: collection.secretAccessKey,
-    region: requestSettings.region?.trim() || collection.region,
-    service: requestSettings.service?.trim() || collection.service,
-    sessionToken:
-      requestSettings.sessionToken?.trim() || collection.sessionToken?.trim(),
+    accessKeyId: resolvedCollection.accessKeyId,
+    secretAccessKey: resolvedCollection.secretAccessKey,
+    region: resolvedRequest.region?.trim() || resolvedCollection.region,
+    service: resolvedRequest.service?.trim() || resolvedCollection.service,
+    sessionToken: resolvedRequest.sessionToken?.trim() || resolvedCollection.sessionToken?.trim()
   };
 }
 
@@ -55,7 +62,7 @@ export function resolvedToPluginHttpRequest(resolved: {
     method: resolved.method,
     url: resolved.url,
     headers: { ...resolved.headers },
-    body: resolved.body,
+    body: resolved.body
   };
 }
 
@@ -94,7 +101,7 @@ export async function previewSignActiveRequest(
   if (requestSettings.collectionId == null) {
     return {
       headers: {},
-      errors: ["Select a credential profile collection before signing."],
+      errors: ['Select a credential profile collection before signing.']
     };
   }
 
@@ -104,23 +111,22 @@ export async function previewSignActiveRequest(
   const collection = parseCollectionAwsConfig(stored);
   const signingConfig = buildSigningConfigFromProfiles(
     collection,
-    requestSettings
+    requestSettings,
+    context.variables
   );
   if (!signingConfig) {
     return {
       headers: {},
-      errors: [
-        "Configure AWS credentials in Collection Settings before signing.",
-      ],
+      errors: ['Configure AWS credentials in Collection Settings before signing.']
     };
   }
 
   const resolved = resolveRequest(context);
   const request = resolvedToPluginHttpRequest(resolved);
 
-  return hc.ipc.invoke<SignResult>("sign", {
+  return hc.ipc.invoke<SignResult>('sign', {
     request,
-    config: signingConfig,
+    config: signingConfig
   });
 }
 
@@ -138,6 +144,6 @@ export async function loadRequestSettingsForContext(
   const stored = await hc.storage.get<RequestAwsSettings>(key);
   return {
     key,
-    settings: parseRequestAwsSettings(stored),
+    settings: parseRequestAwsSettings(stored)
   };
 }

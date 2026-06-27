@@ -1,16 +1,26 @@
-import { useCallback, useEffect, useState } from "@harborclient/sdk/react";
-import type { PluginContext, RequestTabContext } from "@harborclient/sdk";
-import type { RequestAwsSettings } from "../types";
-import { defaultRequestAwsSettings } from "../storage/defaults";
-import { saveRequestAwsSettings } from "../sync/configSync";
+import { useCallback, useEffect, useMemo, useState } from '@harborclient/sdk/react';
+import {
+  Button,
+  FormGroup,
+  Input,
+  Select,
+  StatusMessage,
+  VariableInput,
+  fieldFrame
+} from '@harborclient/sdk/components';
+import type { PluginContext, RequestTabContext } from '@harborclient/sdk';
+import type { RequestAwsSettings } from '../types';
+import { defaultRequestAwsSettings } from '../storage/defaults';
+import { saveRequestAwsSettings, syncConfigToMain } from '../sync/configSync';
 import {
   loadConfiguredCollections,
   loadRequestSettingsForContext,
-  previewSignActiveRequest,
-} from "../sync/signingContext";
-import { setActiveRequestBridge } from "./activeRequestBridge";
-import { showSignPreview } from "./signPreviewState";
-import { SignPreviewModal } from "./SignPreviewModal";
+  previewSignActiveRequest
+} from '../sync/signingContext';
+import { runtimeVariablesToVariableList } from '../utils/variables';
+import { setActiveRequestBridge } from './activeRequestBridge';
+import { showSignPreview } from './signPreviewState';
+import { SignPreviewModal } from './SignPreviewModal';
 
 interface Props {
   /**
@@ -28,17 +38,18 @@ interface Props {
  * Request editor tab for per-request AWS overrides and signature preview.
  */
 export function RequestAwsTab({ context, hc }: Props) {
-  const [settings, setSettings] = useState<RequestAwsSettings>(
-    defaultRequestAwsSettings()
-  );
-  const [settingsKey, setSettingsKey] = useState("");
-  const [collections, setCollections] = useState<
-    Array<{ id: number; label: string }>
-  >([]);
+  const [settings, setSettings] = useState<RequestAwsSettings>(defaultRequestAwsSettings());
+  const [settingsKey, setSettingsKey] = useState('');
+  const [collections, setCollections] = useState<Array<{ id: number; label: string }>>([]);
   const [loaded, setLoaded] = useState(false);
   const [signing, setSigning] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const errorId = "aws-request-error";
+  const profileId = 'aws-credential-profile';
+  const autoSignId = 'aws-request-auto-sign';
+  const variables = useMemo(
+    () => runtimeVariablesToVariableList(context.variables),
+    [context.variables]
+  );
 
   /**
    * Registers this tab as the active request bridge for toolbar actions.
@@ -49,6 +60,13 @@ export function RequestAwsTab({ context, hc }: Props) {
       setActiveRequestBridge(null);
     };
   }, [context, hc]);
+
+  /**
+   * Keeps merged runtime variables synced to main for auto-sign substitution.
+   */
+  useEffect(() => {
+    void syncConfigToMain(hc);
+  }, [context.variables, hc]);
 
   /**
    * Loads configured collection profiles for the credential picker.
@@ -62,9 +80,7 @@ export function RequestAwsTab({ context, hc }: Props) {
       setCollections(
         entries.map((entry) => ({
           id: entry.id,
-          label: `Collection #${entry.id} (${
-            entry.config.region || "region?"
-          })`,
+          label: `Collection #${entry.id} (${entry.config.region || 'region?'})`
         }))
       );
     });
@@ -81,16 +97,14 @@ export function RequestAwsTab({ context, hc }: Props) {
     setLoaded(false);
     setError(null);
 
-    void loadRequestSettingsForContext(hc, context).then(
-      ({ key, settings: stored }) => {
-        if (cancelled) {
-          return;
-        }
-        setSettingsKey(key);
-        setSettings(stored);
-        setLoaded(true);
+    void loadRequestSettingsForContext(hc, context).then(({ key, settings: stored }) => {
+      if (cancelled) {
+        return;
       }
-    );
+      setSettingsKey(key);
+      setSettings(stored);
+      setLoaded(true);
+    });
 
     return () => {
       cancelled = true;
@@ -105,7 +119,7 @@ export function RequestAwsTab({ context, hc }: Props) {
       return;
     }
     void saveRequestAwsSettings(hc, settingsKey, settings).catch(() => {
-      setError("Failed to save request AWS settings.");
+      setError('Failed to save request AWS settings.');
     });
   }, [hc, loaded, settings, settingsKey]);
 
@@ -118,15 +132,11 @@ export function RequestAwsTab({ context, hc }: Props) {
     try {
       const result = await previewSignActiveRequest(hc, context, settings);
       if (result.errors?.length) {
-        setError(result.errors.join(" "));
+        setError(result.errors.join(' '));
       }
       showSignPreview(result);
     } catch (previewError) {
-      setError(
-        previewError instanceof Error
-          ? previewError.message
-          : String(previewError)
-      );
+      setError(previewError instanceof Error ? previewError.message : String(previewError));
     } finally {
       setSigning(false);
     }
@@ -135,23 +145,21 @@ export function RequestAwsTab({ context, hc }: Props) {
   return (
     <div className="space-y-4 p-4">
       <p className="text-[14px] text-muted">
-        Choose which collection credentials to use for this request and
-        optionally override region or service. Signatures are applied
-        automatically on Send when auto-sign is enabled.
+        Choose which collection credentials to use for this request and optionally override region
+        or service. Signatures are applied automatically on Send when auto-sign is enabled.
       </p>
 
-      <label className="block space-y-1">
-        <span className="text-[14px] text-text">Credential profile</span>
-        <select
-          className="w-full max-w-md rounded border border-control bg-control px-3 py-2 text-[14px]"
-          value={settings.collectionId ?? ""}
-          aria-invalid={error != null}
-          aria-describedby={error != null ? errorId : undefined}
+      <FormGroup label="Credential profile" htmlFor={profileId} error={error ?? undefined}>
+        <Select
+          id={profileId}
+          variant="control"
+          className="w-full max-w-md"
+          value={settings.collectionId ?? ''}
           onChange={(event) => {
             const value = event.target.value;
             setSettings((current) => ({
               ...current,
-              collectionId: value === "" ? null : Number(value),
+              collectionId: value === '' ? null : Number(value)
             }));
           }}
         >
@@ -161,92 +169,90 @@ export function RequestAwsTab({ context, hc }: Props) {
               {entry.label}
             </option>
           ))}
-        </select>
-      </label>
+        </Select>
+      </FormGroup>
 
       {collections.length === 0 ? (
-        <p className="text-[14px] text-muted" role="status">
+        <StatusMessage>
           Save AWS credentials under Collection Settings → AWS SigV4 first.
-        </p>
+        </StatusMessage>
       ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block space-y-1">
-          <span className="text-[14px] text-text">Region override</span>
-          <input
-            className="w-full rounded border border-control bg-control px-3 py-2 text-[14px]"
-            value={settings.region ?? ""}
+        <FormGroup label="Region override" htmlFor="aws-region-override">
+          <VariableInput
+            id="aws-region-override"
+            variables={variables}
+            value={settings.region ?? ''}
             placeholder="Uses collection default"
-            onChange={(event) => {
+            wrapperClassName={`w-full ${fieldFrame}`}
+            onChange={(value) => {
               setSettings((current) => ({
                 ...current,
-                region: event.target.value,
+                region: value
               }));
             }}
           />
-        </label>
+        </FormGroup>
 
-        <label className="block space-y-1">
-          <span className="text-[14px] text-text">Service override</span>
-          <input
-            className="w-full rounded border border-control bg-control px-3 py-2 text-[14px]"
-            value={settings.service ?? ""}
+        <FormGroup label="Service override" htmlFor="aws-service-override">
+          <VariableInput
+            id="aws-service-override"
+            variables={variables}
+            value={settings.service ?? ''}
             placeholder="Uses collection default or URL heuristic"
-            onChange={(event) => {
+            wrapperClassName={`w-full ${fieldFrame}`}
+            onChange={(value) => {
               setSettings((current) => ({
                 ...current,
-                service: event.target.value,
+                service: value
               }));
             }}
           />
-        </label>
+        </FormGroup>
       </div>
 
-      <label className="block space-y-1">
-        <span className="text-[14px] text-text">Session token override</span>
-        <input
-          className="w-full rounded border border-control bg-control px-3 py-2 font-mono text-[14px]"
-          value={settings.sessionToken ?? ""}
+      <FormGroup label="Session token override" htmlFor="aws-session-override">
+        <VariableInput
+          id="aws-session-override"
+          variables={variables}
+          value={settings.sessionToken ?? ''}
           placeholder="Optional"
-          onChange={(event) => {
+          wrapperClassName={`w-full ${fieldFrame}`}
+          className="font-mono"
+          onChange={(value) => {
             setSettings((current) => ({
               ...current,
-              sessionToken: event.target.value,
+              sessionToken: value
             }));
           }}
         />
-      </label>
+      </FormGroup>
 
-      <label className="flex items-center gap-2 text-[14px] text-text">
-        <input
+      <FormGroup label="Auto-sign this request on Send" htmlFor={autoSignId} layout="checkbox">
+        <Input
+          id={autoSignId}
           type="checkbox"
           checked={settings.autoSign}
           onChange={(event) => {
             setSettings((current) => ({
               ...current,
-              autoSign: event.target.checked,
+              autoSign: event.target.checked
             }));
           }}
         />
-        Auto-sign this request on Send
-      </label>
+      </FormGroup>
 
-      {error != null ? (
-        <p id={errorId} className="text-[14px] text-danger" role="status">
-          {error}
-        </p>
-      ) : null}
-
-      <button
+      <Button
         type="button"
-        className="rounded border border-separator bg-control px-4 py-2 text-[14px] text-text disabled:opacity-50"
+        variant="secondary"
         disabled={signing || settings.collectionId == null}
         onClick={() => void handlePreviewSign()}
       >
-        {signing ? "Signing…" : "Preview signature"}
-      </button>
+        {signing ? 'Signing…' : 'Preview signature'}
+      </Button>
 
-      <SignPreviewModal />
+      <SignPreviewModal hc={hc} />
     </div>
   );
 }
