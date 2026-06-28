@@ -2,6 +2,9 @@
 
 HarborClient plugin that signs outgoing HTTP requests with AWS Signature Version 4.
 
+![Screenshot](screenshot.png)
+
+
 ## Features
 
 - Collection Settings tab for access key, secret, region, service, and optional session token
