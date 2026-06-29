@@ -4,7 +4,7 @@ var __export = (target, all) => {
     __defProp(target, name, { get: all[name], enumerable: true });
 };
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/reactHost.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/runtime/reactHost.js
 var hostReact = null;
 function setHostReact(react) {
   hostReact = react;
@@ -18,12 +18,12 @@ function requireHostReact() {
   return hostReact;
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/runtime/index.js
 function installReact(react) {
   setHostReact(react);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/react.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/runtime/react.js
 var react_exports = {};
 __export(react_exports, {
   cloneElement: () => cloneElement,
@@ -131,7 +131,7 @@ var defaultExport = new Proxy(react_exports, {
 });
 var react_default = defaultExport;
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/runtime/jsx-runtime.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/runtime/jsx-runtime.js
 var Fragment = Symbol.for("@harborclient/sdk.Fragment");
 function build(type, props, key) {
   const react = requireHostReact();
@@ -145,22 +145,22 @@ function build(type, props, key) {
 var jsx = build;
 var jsxs = build;
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Button/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/Button/index.js
 var VARIANT_CLASSES = {
-  primary: "cursor-pointer rounded-md border border-transparent bg-accent px-3 py-1 text-[15px] font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
-  secondary: "cursor-pointer rounded-md border border-separator bg-control px-3 py-1 text-[15px] text-text shadow-sm hover:bg-selection disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
-  primaryDanger: "cursor-pointer rounded-md border border-transparent bg-danger px-3 py-1 text-[15px] font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
-  secondaryDanger: "cursor-pointer rounded-md border border-separator bg-control px-3 py-1 text-[15px] text-danger shadow-sm hover:bg-danger/15 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
-  toolbar: "cursor-pointer rounded-md border-none bg-transparent px-2 py-1 text-[15px] hover:bg-selection app-no-drag",
-  icon: "inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-muted opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 focus-visible:opacity-100 hover:bg-selection hover:text-text app-no-drag",
-  iconDanger: "inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-muted opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 focus-visible:opacity-100 hover:bg-danger/15 hover:text-danger app-no-drag"
+  primary: "inline-flex min-h-[34px] cursor-pointer items-center justify-center rounded-md border border-transparent bg-accent px-3 py-1 text-[15px] font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
+  secondary: "inline-flex min-h-[34px] cursor-pointer items-center justify-center rounded-md border border-separator bg-control px-3 py-1 text-[15px] text-text shadow-sm hover:bg-selection disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
+  primaryDanger: "inline-flex min-h-[34px] cursor-pointer items-center justify-center rounded-md border border-transparent bg-danger px-3 py-1 text-[15px] font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
+  secondaryDanger: "inline-flex min-h-[34px] cursor-pointer items-center justify-center rounded-md border border-separator bg-control px-3 py-1 text-[15px] text-danger shadow-sm hover:bg-danger/15 disabled:cursor-not-allowed disabled:opacity-50 app-no-drag",
+  toolbar: "inline-flex min-h-[34px] cursor-pointer items-center rounded-md border-none bg-transparent px-2 py-1 text-[15px] hover:bg-selection app-no-drag",
+  icon: "inline-flex size-[30px] shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-muted hover:bg-selection hover:text-text app-no-drag",
+  iconDanger: "inline-flex size-[30px] shrink-0 cursor-pointer items-center justify-center rounded-md border-none bg-transparent text-muted hover:bg-danger/15 hover:text-danger app-no-drag"
 };
-function Button({ variant = "primary", className, type = "button", ...props }) {
+function Button({ variant = "primary", className, type = "button", innerRef, ...props }) {
   const classes = className ? `${VARIANT_CLASSES[variant]} ${className}` : VARIANT_CLASSES[variant];
-  return jsx("button", { type, className: classes, ...props });
+  return jsx("button", { ref: innerRef, type, className: classes, ...props });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FieldError/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/FieldError/index.js
 function spacingClasses(spacing) {
   switch (spacing) {
     case "section":
@@ -172,7 +172,7 @@ function spacingClasses(spacing) {
       return "mt-1";
   }
 }
-function FieldError({ children, id, spacing = "field", roleAlert = false, className }) {
+function FieldError({ children, id, spacing = "field", roleAlert = true, className }) {
   if (children == null || children === "")
     return null;
   const base = `${spacingClasses(spacing)} text-[14px] text-danger`;
@@ -4018,7 +4018,7 @@ var FontAwesomeIcon = react_default.forwardRef((props, ref) => {
 FontAwesomeIcon.displayName = "FontAwesomeIcon";
 var DEFAULT_CLASSNAMES = `${LAYER_CLASSES.default} ${STYLE_CLASSES.fixedWidth}`;
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FaIcon/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/FaIcon/index.js
 function FaIcon({ icon: icon3, className = "h-3.5 w-3.5", title }) {
   return createElement(FontAwesomeIcon, {
     icon: icon3,
@@ -5917,7 +5917,7 @@ var e3 = { airline: { airline: [{ name: `Aegean Airlines`, iataCode: `A3` }, { n
 // node_modules/.pnpm/@faker-js+faker@10.5.0/node_modules/@faker-js/faker/dist/locale/en.js
 var r3 = new yt({ locale: [e3, Ct] });
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/variables/dynamic.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/variables/dynamic.js
 function categoryImageUrl(category) {
   return r3.image.urlLoremFlickr({ category });
 }
@@ -6424,7 +6424,7 @@ function resolveDynamicVariable(key) {
 }
 var DYNAMIC_VARIABLE_NAMES = Object.keys(DYNAMIC_VARIABLES).sort();
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/variables/tokens.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/variables/tokens.js
 var VARIABLE_NAME_CHARS = "\\w$.-";
 var VARIABLE_TOKEN_PATTERN = new RegExp(`\\{\\{\\s*([${VARIABLE_NAME_CHARS}]+)\\s*\\}\\}`, "g");
 function variableLookup(variables) {
@@ -6447,11 +6447,34 @@ function tokenizeVariables(text2) {
   }
   return tokens;
 }
+function getVariableTokenAtOffset(text2, offset) {
+  let position = 0;
+  for (const token of tokenizeVariables(text2)) {
+    const start = position;
+    const end3 = position + token.text.length;
+    if (token.key && offset >= start && offset <= end3) {
+      return { key: token.key, start, end: end3 };
+    }
+    position = end3;
+  }
+  return null;
+}
+function getVariableTooltipContent(key, variables) {
+  const value = resolveVariable(key, variables);
+  if (value !== void 0) {
+    return { text: value, muted: false };
+  }
+  const dynamicDescription = getDynamicVariableDescription(key);
+  if (dynamicDescription) {
+    return { text: `Dynamic: ${dynamicDescription}`, muted: true };
+  }
+  return { text: "Not defined", muted: true };
+}
 function resolveVariable(key, variables) {
   return variableLookup(variables).get(key);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/classes.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/forms/classes.js
 var fieldFrame = "overflow-hidden rounded-md border border-separator bg-field";
 var field = "rounded-md border border-separator bg-field px-2 py-1 text-[15px] text-text app-no-drag";
 var surfaceField = "w-full rounded-md border border-separator bg-field px-3 py-2 text-[14px] text-text";
@@ -6470,24 +6493,25 @@ function mergeFieldClasses(variant, className) {
   return void 0;
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/Input.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/forms/Input.js
 function Input({ ref, variant = "control", type, className, ...props }) {
   const resolvedVariant = type === "checkbox" || type === "radio" ? "plain" : variant;
   return jsx("input", { ref, type, className: mergeFieldClasses(resolvedVariant, className), ...props });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/forms/Select.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/forms/Select.js
 function Select({ ref, variant = "control", className, children, ...props }) {
   return jsx("select", { ref, className: mergeFieldClasses(variant, className), ...props, children });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/VariableInput/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/VariableInput/index.js
 function VariableInput({ value, onChange: onChange2, variables, placeholder, onKeyDown, className = "", wrapperClassName, onEditVariable, id, "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy }) {
   const inputRef = useRef(null);
   const backdropRef = useRef(null);
   const spanRefs = useRef(/* @__PURE__ */ new Map());
   const hideTimer = useRef(null);
   const [tooltip, setTooltip] = useState(null);
+  const tooltipId = useId();
   const tokens = useMemo(() => tokenizeVariables(value), [value]);
   const cancelHide = () => {
     if (hideTimer.current != null) {
@@ -6507,6 +6531,43 @@ function VariableInput({ value, onChange: onChange2, variables, placeholder, onK
       backdrop.scrollLeft = input.scrollLeft;
     }
   };
+  const showTooltipForKey = (key, top, left) => {
+    setTooltip({
+      key,
+      value: resolveVariable(key, variables),
+      dynamicDescription: getDynamicVariableDescription(key),
+      top,
+      left
+    });
+  };
+  const updateTooltipFromCaret = () => {
+    const input = inputRef.current;
+    if (!input)
+      return;
+    const offset = input.selectionStart ?? 0;
+    const match = getVariableTokenAtOffset(value, offset);
+    if (!match) {
+      setTooltip(null);
+      return;
+    }
+    let tokenIndex = -1;
+    let position = 0;
+    for (const [index, token] of tokens.entries()) {
+      if (token.key && position === match.start) {
+        tokenIndex = index;
+        break;
+      }
+      position += token.text.length;
+    }
+    const span = tokenIndex >= 0 ? spanRefs.current.get(tokenIndex) : void 0;
+    if (span) {
+      const rect2 = span.getBoundingClientRect();
+      showTooltipForKey(match.key, rect2.top, rect2.left + rect2.width / 2);
+      return;
+    }
+    const rect = input.getBoundingClientRect();
+    showTooltipForKey(match.key, rect.top, rect.left + rect.width / 2);
+  };
   const handleMouseMove = (e4) => {
     cancelHide();
     for (const [index, token] of tokens.entries()) {
@@ -6517,30 +6578,103 @@ function VariableInput({ value, onChange: onChange2, variables, placeholder, onK
         continue;
       const rect = span.getBoundingClientRect();
       if (e4.clientX >= rect.left && e4.clientX <= rect.right && e4.clientY >= rect.top && e4.clientY <= rect.bottom) {
-        setTooltip({
-          key: token.key,
-          value: resolveVariable(token.key, variables),
-          dynamicDescription: getDynamicVariableDescription(token.key),
-          top: rect.top,
-          left: rect.left + rect.width / 2
-        });
+        showTooltipForKey(token.key, rect.top, rect.left + rect.width / 2);
         return;
       }
     }
     setTooltip(null);
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape" && tooltip) {
+      event.preventDefault();
+      setTooltip(null);
+      return;
+    }
+    onKeyDown?.(event);
+  };
+  const handleKeyUp = (event) => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === "ArrowUp" || event.key === "ArrowDown" || event.key === "Home" || event.key === "End") {
+      updateTooltipFromCaret();
+    }
+  };
+  const tooltipContent = tooltip ? getVariableTooltipContent(tooltip.key, variables) : null;
   return jsxs("div", { className: wrapperClassName ? `relative min-w-0 ${wrapperClassName}` : "relative min-w-0 flex-1", children: [jsx("div", { ref: backdropRef, "aria-hidden": true, className: "pointer-events-none absolute inset-0 overflow-hidden whitespace-nowrap px-2 py-1.5 text-[14px] text-inherit", children: value ? tokens.map((token, index) => token.key ? jsx("span", { ref: (el) => {
     if (el)
       spanRefs.current.set(index, el);
     else
       spanRefs.current.delete(index);
-  }, className: "text-[#32D2E2]", children: token.text }, index) : jsx("span", { children: token.text }, index)) : jsx("span", { className: "text-muted", children: placeholder }) }), jsx(Input, { ref: inputRef, id, variant: "plain", "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, className: `relative w-full min-w-0 border-none bg-transparent px-2 py-1.5 text-[14px] text-transparent caret-text focus-visible:shadow-none ${className}`, type: "text", placeholder, value, onChange: (e4) => onChange2(e4.target.value), onKeyDown, onScroll: syncScroll, onMouseMove: handleMouseMove, onMouseLeave: scheduleHide }), tooltip && jsxs("div", { className: "pointer-events-auto fixed z-50 flex max-w-sm -translate-x-1/2 -translate-y-full flex-col gap-1.5 rounded-md border border-separator bg-surface px-3 py-2 text-[14px] text-text shadow-md", style: { top: tooltip.top - 4, left: tooltip.left }, onMouseEnter: cancelHide, onMouseLeave: () => setTooltip(null), children: [tooltip.value !== void 0 ? tooltip.value : tooltip.dynamicDescription ? jsxs("span", { className: "text-muted", children: ["Dynamic: ", tooltip.dynamicDescription] }) : jsx("span", { className: "text-muted", children: "Not defined" }), onEditVariable && jsx("button", { type: "button", className: "self-start text-[14px] text-accent hover:underline app-no-drag", onClick: () => {
+  }, className: "text-[#32D2E2]", children: token.text }, index) : jsx("span", { children: token.text }, index)) : jsx("span", { className: "text-muted", children: placeholder }) }), jsx(Input, { ref: inputRef, id, variant: "plain", "aria-label": ariaLabel, "aria-labelledby": ariaLabelledBy, "aria-describedby": tooltip ? tooltipId : void 0, className: `relative w-full min-w-0 border-none bg-transparent px-2 py-1.5 text-[14px] text-transparent caret-text focus-visible:shadow-none ${className}`, type: "text", placeholder, value, onChange: (e4) => {
+    onChange2(e4.target.value);
+    queueMicrotask(updateTooltipFromCaret);
+  }, onFocus: updateTooltipFromCaret, onKeyDown: handleKeyDown, onKeyUp: handleKeyUp, onSelect: updateTooltipFromCaret, onClick: updateTooltipFromCaret, onScroll: syncScroll, onMouseMove: handleMouseMove, onMouseLeave: scheduleHide }), tooltip && tooltipContent && jsxs("div", { id: tooltipId, role: "tooltip", className: "pointer-events-auto fixed z-50 flex max-w-sm -translate-x-1/2 -translate-y-full flex-col gap-1.5 rounded-md border border-separator bg-surface px-3 py-2 text-[14px] text-text shadow-md", style: { top: tooltip.top - 4, left: tooltip.left }, onMouseEnter: cancelHide, onMouseLeave: () => setTooltip(null), children: [jsx("span", { className: tooltipContent.muted ? "text-muted" : void 0, children: tooltipContent.text }), onEditVariable && jsx("button", { type: "button", className: "self-start text-[14px] text-accent hover:underline app-no-drag", "aria-label": `Edit value for ${tooltip.key}`, onClick: () => {
     onEditVariable();
     setTooltip(null);
   }, children: "Edit value" })] })] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/FormGroup/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/enhanceControl.js
+var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
+var FORM_CONTROL_TAGS = /* @__PURE__ */ new Set(["button", "input", "select", "textarea"]);
+function getSingleChild(node) {
+  if (node == null || typeof node === "boolean")
+    return void 0;
+  if (Array.isArray(node)) {
+    const filtered = node.filter((n3) => n3 != null && n3 !== false);
+    return filtered.length === 1 ? filtered[0] : void 0;
+  }
+  return node;
+}
+function applyAriaProps(child, options) {
+  const { describedBy, invalid, id } = options;
+  const props = {};
+  if (id && child.props.id == null) {
+    props.id = id;
+  }
+  if (describedBy) {
+    const existing = typeof child.props["aria-describedby"] === "string" ? child.props["aria-describedby"] : void 0;
+    props["aria-describedby"] = existing ? `${existing} ${describedBy}` : describedBy;
+  }
+  if (invalid) {
+    props["aria-invalid"] = true;
+  }
+  if (Object.keys(props).length === 0)
+    return child;
+  return cloneElement(child, props);
+}
+function enhanceControl(child, options) {
+  const { describedBy, invalid, id } = options;
+  if (!describedBy && !invalid && !id)
+    return child;
+  const single = getSingleChild(child);
+  if (single !== void 0 && single !== child) {
+    return enhanceControl(single, options);
+  }
+  if (!isValidElement(child))
+    return child;
+  if (child.type === REACT_FRAGMENT_TYPE) {
+    const inner = getSingleChild(child.props.children);
+    if (inner && isValidElement(inner)) {
+      return cloneElement(child, {}, enhanceControl(inner, options));
+    }
+    return child;
+  }
+  if (typeof child.type === "string") {
+    if (FORM_CONTROL_TAGS.has(child.type)) {
+      return applyAriaProps(child, options);
+    }
+    const inner = getSingleChild(child.props.children);
+    if (inner && isValidElement(inner)) {
+      const enhanced = enhanceControl(inner, options);
+      if (enhanced !== inner) {
+        return cloneElement(child, {}, enhanced);
+      }
+    }
+    return child;
+  }
+  return applyAriaProps(child, options);
+}
+
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/FormGroup/index.js
 function labelClasses(tone, srOnly, inline) {
   const base = "text-[14px]";
   const visibility = srOnly ? "sr-only" : "";
@@ -6551,18 +6685,9 @@ function labelClasses(tone, srOnly, inline) {
   const color = tone === "muted" ? "text-muted" : "font-medium text-text";
   return `${base} ${color} ${visibility}`.trim();
 }
-function enhanceControl(child, describedBy) {
-  if (!describedBy || !isValidElement(child)) {
-    return child;
-  }
-  const existingDescribedBy = typeof child.props["aria-describedby"] === "string" ? child.props["aria-describedby"] : void 0;
-  const mergedDescribedBy = existingDescribedBy ? `${existingDescribedBy} ${describedBy}` : describedBy;
-  return cloneElement(child, {
-    "aria-invalid": true,
-    "aria-describedby": mergedDescribedBy
-  });
-}
-function FormGroup({ label, children, htmlFor, description, error, errorId, layout = "stacked", labelTone = "default", srOnly = false, className, labelClassName }) {
+function FormGroup({ label, children, htmlFor, description, error, errorId, descriptionId, layout = "stacked", labelTone = "default", srOnly = false, className, labelClassName }) {
+  const generatedId = useId();
+  const controlId = htmlFor ?? generatedId;
   const extra = className ?? "";
   if (layout === "associated") {
     const associatedClasses = labelClassName ?? "text-[14px] text-text";
@@ -6571,28 +6696,73 @@ function FormGroup({ label, children, htmlFor, description, error, errorId, layo
   if (layout === "checkboxAdjacent") {
     const wrapperClasses2 = extra ? `flex items-start gap-2 ${extra}` : "flex items-start gap-2";
     const adjacentLabelClasses = labelClassName ?? "min-w-0 flex-1 text-[14px] text-text";
-    return jsxs("div", { className: wrapperClasses2, children: [children, jsx("label", { htmlFor, className: adjacentLabelClasses, children: label })] });
+    const linkedChildren = enhanceControl(children, { id: controlId });
+    return jsxs("div", { className: wrapperClasses2, children: [linkedChildren, jsx("label", { htmlFor: controlId, className: adjacentLabelClasses, children: label })] });
   }
   if (layout === "radio") {
     const wrapperClasses2 = extra ? `inline-flex cursor-pointer items-center gap-1.5 text-[14px] text-text app-no-drag ${extra}` : "inline-flex cursor-pointer items-center gap-1.5 text-[14px] text-text app-no-drag";
-    return jsxs("label", { htmlFor, className: wrapperClasses2, children: [children, label] });
+    const linkedChildren = enhanceControl(children, { id: controlId });
+    return jsxs("label", { htmlFor: controlId, className: wrapperClasses2, children: [linkedChildren, label] });
   }
   if (layout === "checkbox") {
     const wrapperClasses2 = extra ? `flex items-center gap-2 ${extra}` : "flex items-center gap-2";
-    return jsxs("label", { htmlFor, className: wrapperClasses2, children: [children, jsx("span", { className: labelClasses(labelTone, srOnly, false), children: label })] });
+    const linkedChildren = enhanceControl(children, { id: controlId });
+    return jsxs("label", { htmlFor: controlId, className: wrapperClasses2, children: [linkedChildren, jsx("span", { className: labelClasses(labelTone, srOnly, false), children: label })] });
   }
   if (layout === "inline") {
     const wrapperClasses2 = extra ? `flex min-w-0 flex-1 items-center gap-2 ${extra}` : "flex min-w-0 flex-1 items-center gap-2";
-    return jsxs("label", { htmlFor, className: wrapperClasses2, children: [jsx("span", { className: labelClasses(labelTone, srOnly, true), children: label }), children] });
+    const linkedChildren = enhanceControl(children, { id: controlId });
+    return jsxs("label", { htmlFor: controlId, className: wrapperClasses2, children: [jsx("span", { className: labelClasses(labelTone, srOnly, true), children: label }), linkedChildren] });
   }
+  const resolvedDescriptionId = description != null && description !== "" ? descriptionId ?? (htmlFor ? `${htmlFor}-description` : void 0) : void 0;
   const resolvedErrorId = error != null && error !== "" ? errorId ?? (htmlFor ? `${htmlFor}-error` : void 0) : void 0;
-  const control = enhanceControl(children, resolvedErrorId);
+  const describedByIds = [resolvedDescriptionId, resolvedErrorId].filter((id) => id != null);
+  const describedBy = describedByIds.length > 0 ? describedByIds.join(" ") : void 0;
+  const control = enhanceControl(children, {
+    describedBy,
+    invalid: resolvedErrorId != null,
+    id: htmlFor
+  });
   const wrapperClasses = extra ? `flex flex-col gap-1 ${extra}` : "flex flex-col gap-1";
-  return jsxs("div", { className: wrapperClasses, children: [jsxs("label", { htmlFor, className: "flex flex-col gap-1", children: [jsx("span", { className: labelClasses(labelTone, srOnly, false), children: label }), control, description != null && description !== "" ? jsx("p", { className: "m-0 text-[14px] text-muted", children: description }) : null] }), resolvedErrorId ? jsx(FieldError, { id: resolvedErrorId, spacing: "field", children: error }) : null] });
+  return jsxs("div", { className: wrapperClasses, children: [jsxs("label", { htmlFor, className: "flex flex-col gap-1", children: [jsx("span", { className: labelClasses(labelTone, srOnly, false), children: label }), control, resolvedDescriptionId ? jsx("p", { id: resolvedDescriptionId, className: "m-0 text-[14px] text-muted", children: description }) : null] }), resolvedErrorId ? jsx(FieldError, { id: resolvedErrorId, spacing: "field", children: error }) : null] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/useDialogFocus.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/useDialogFocus.js
 var FOCUSABLE_SELECTOR = 'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+var inertLockCounts = /* @__PURE__ */ new WeakMap();
+function setInertLocked(element, locked) {
+  const count = inertLockCounts.get(element) ?? 0;
+  if (locked) {
+    inertLockCounts.set(element, count + 1);
+    element.inert = true;
+    return;
+  }
+  const next = count - 1;
+  if (next <= 0) {
+    inertLockCounts.delete(element);
+    element.inert = false;
+  } else {
+    inertLockCounts.set(element, next);
+  }
+}
+function lockOverlaySiblings(overlay) {
+  const parent = overlay.parentElement;
+  if (!parent)
+    return [];
+  const locked = [];
+  for (const child of parent.children) {
+    if (child === overlay)
+      continue;
+    setInertLocked(child, true);
+    locked.push(child);
+  }
+  return locked;
+}
+function unlockOverlaySiblings(siblings) {
+  for (const sibling of siblings) {
+    setInertLocked(sibling, false);
+  }
+}
 function getFocusableElements(container) {
   const candidates = Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR));
   return candidates.filter((element) => {
@@ -6609,6 +6779,7 @@ function useDialogFocus(panelRef) {
     const panel = panelRef.current;
     if (!panel)
       return;
+    const inertedSiblings = lockOverlaySiblings(panel);
     const previousFocus = document.activeElement;
     if (!panel.contains(document.activeElement)) {
       const focusables = getFocusableElements(panel);
@@ -6643,6 +6814,7 @@ function useDialogFocus(panelRef) {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      unlockOverlaySiblings(inertedSiblings);
       if (previousFocus instanceof HTMLElement && document.contains(previousFocus)) {
         previousFocus.focus();
       }
@@ -6650,22 +6822,23 @@ function useDialogFocus(panelRef) {
   }, [panelRef]);
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/ModalHeader.js
-function ModalHeader({ titleId, title, description, headerActions, closeDisabled = false, onClose }) {
-  return jsxs("div", { className: "flex flex-wrap items-center gap-2 border-b border-separator px-4 py-4", children: [jsxs("div", { className: "min-w-0 flex-1", children: [jsx("h2", { id: titleId, className: "m-0 flex flex-wrap items-center gap-2 text-[17px] font-semibold text-text", children: title }), description ? jsx("p", { className: "m-0 mt-1 text-[14px] text-muted", children: description }) : null] }), jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [headerActions, jsx(Button, { type: "button", variant: "icon", className: "shrink-0 opacity-100", "aria-label": "Close", disabled: closeDisabled, onClick: onClose, children: jsx(FaIcon, { icon: faXmark, className: "h-4 w-4" }) })] })] });
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/Modal/ModalHeader.js
+function ModalHeader({ titleId, title, description, descriptionId, headerActions, closeDisabled = false, onClose }) {
+  return jsxs("div", { className: "flex flex-wrap items-center gap-2 border-b border-separator px-4 py-4", children: [jsxs("div", { className: "min-w-0 flex-1", children: [jsx("h2", { id: titleId, className: "m-0 flex flex-wrap items-center gap-2 text-[17px] font-semibold text-text", children: title }), description ? jsx("p", { id: descriptionId, className: "m-0 mt-1 text-[14px] text-muted", children: description }) : null] }), jsxs("div", { className: "flex flex-wrap items-center gap-2", children: [headerActions, jsx(Button, { type: "button", variant: "icon", className: "shrink-0", "aria-label": "Close", disabled: closeDisabled, onClick: onClose, children: jsx(FaIcon, { icon: faXmark, className: "h-4 w-4" }) })] })] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/ModalFooter.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/Modal/ModalFooter.js
 function ModalFooter({ children, spaced = false, className }) {
   const base = spaced ? "mt-4 flex justify-end gap-2" : "flex justify-end gap-2";
   const classes = className ? `${base} ${className}` : base;
   return jsx("div", { className: classes, children });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/Modal/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/Modal/index.js
 function Modal({ onClose, className = "w-96", overlayClassName, disableEscape = false, title, description, headerActions, closeDisabled = false, labelledBy, label, children }) {
   const panelRef = useRef(null);
-  useDialogFocus(panelRef);
+  const overlayRef = useRef(null);
+  useDialogFocus(overlayRef);
   useEffect(() => {
     if (disableEscape)
       return;
@@ -6679,10 +6852,11 @@ function Modal({ onClose, className = "w-96", overlayClassName, disableEscape = 
   }, [disableEscape, onClose]);
   const overlayClass = `fixed inset-0 flex items-center justify-center bg-black/40 ${overlayClassName ?? "z-50"}`;
   const panelClass = title ? `${className} flex max-h-[85vh] flex-col overflow-hidden rounded-lg border border-separator bg-surface shadow-xl` : `${className} rounded-lg border border-separator bg-surface p-4 shadow-xl`;
-  return jsx("div", { className: overlayClass, onClick: onClose, children: jsx("div", { ref: panelRef, role: "dialog", "aria-modal": "true", "aria-labelledby": labelledBy, "aria-label": label, className: panelClass, onClick: (event) => event.stopPropagation(), children: title && labelledBy ? jsxs(Fragment, { children: [jsx(ModalHeader, { titleId: labelledBy, title, description, headerActions, closeDisabled, onClose }), jsx("div", { className: "flex-1 overflow-y-auto p-4", children })] }) : children }) });
+  const descriptionId = description && labelledBy ? `${labelledBy}-description` : void 0;
+  return jsxs("div", { ref: overlayRef, className: overlayClass, children: [jsx("div", { ref: panelRef, role: "dialog", "aria-modal": "true", "aria-labelledby": labelledBy, "aria-describedby": descriptionId, "aria-label": label, className: `relative z-10 ${panelClass}`, onClick: (event) => event.stopPropagation(), children: title && labelledBy ? jsxs(Fragment, { children: [jsx(ModalHeader, { titleId: labelledBy, title, description, descriptionId, headerActions, closeDisabled, onClose }), jsx("div", { className: "flex-1 overflow-y-auto p-4", children })] }) : children }), jsx("button", { type: "button", tabIndex: -1, className: "absolute inset-0 z-0 cursor-default border-none bg-transparent p-0", "aria-label": "Close dialog", onClick: onClose })] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/components/StatusMessage/index.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/components/StatusMessage/index.js
 function StatusMessage({ children, live = true, id, className }) {
   const base = "text-[14px] text-muted";
   const classes = className ? `${base} ${className}` : base;
@@ -7022,7 +7196,7 @@ function CollectionAwsTab({ context, hc }) {
   ] });
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/http/substitute.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/http/substitute.js
 function substituteVariables2(text2, runtimeVars) {
   const pattern = new RegExp(VARIABLE_TOKEN_PATTERN.source, "g");
   return text2.replace(pattern, (match, key) => {
@@ -7053,7 +7227,7 @@ function substituteKeyValueRows(rows, runtimeVars) {
   }));
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/http/resolveRequest.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/http/resolveRequest.js
 function hasUnsafeHeaderFieldChars(value) {
   for (let index = 0; index < value.length; index += 1) {
     const code = value.charCodeAt(index);
@@ -7318,7 +7492,7 @@ function subscribeSignPreview(listener2) {
   };
 }
 
-// node_modules/.pnpm/@harborclient+sdk@0.5.0_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search@_1ce3235504e871aa5dbe742de87ddfcd/node_modules/@harborclient/sdk/dist/clipboard.js
+// node_modules/.pnpm/@harborclient+sdk@0.6.14_@babel+runtime@8.0.0_@codemirror+lint@6.9.7_@codemirror+search_47d90e3f55246fd089138cc6a136d024/node_modules/@harborclient/sdk/dist/clipboard.js
 async function copyToClipboard(hc, text2, options) {
   await navigator.clipboard.writeText(text2);
   if (options?.toast) {
