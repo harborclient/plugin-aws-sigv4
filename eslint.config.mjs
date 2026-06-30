@@ -1,12 +1,1 @@
-import eslint from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import tseslint from 'typescript-eslint';
-
-export default tseslint.config(
-  {
-    ignores: ['**/node_modules', '**/dist', 'signature.json', 'scripts/screenshot-marketing.html']
-  },
-  eslint.configs.recommended,
-  tseslint.configs.recommended,
-  eslintConfigPrettier
-);
+export { default } from '@harborclient/sdk/eslint';

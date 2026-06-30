@@ -1,9 +1,8 @@
 import { installReact } from '@harborclient/sdk';
 import type { PluginContext } from '@harborclient/sdk';
-import { installReactShim } from './shims/react';
 import { CollectionAwsTab } from './components/CollectionAwsTab';
 import { RequestAwsTab } from './components/RequestAwsTab';
-import { getActiveRequestBridge } from './components/activeRequestBridge';
+import { getActiveRequestBridge, setActiveRequestBridge } from './components/activeRequestBridge';
 import { showSignPreview } from './components/signPreviewState';
 import { loadRequestSettingsForContext, previewSignActiveRequest } from './sync/signingContext';
 import { syncConfigToMain } from './sync/configSync';
@@ -20,7 +19,8 @@ export function activate(hc: PluginContext): void {
     );
   }
   installReact(hc.react);
-  installReactShim(hc.react);
+
+  hc.subscriptions.push({ dispose: () => setActiveRequestBridge(null) });
 
   /**
    * Collection settings tab host that closes over the plugin context.

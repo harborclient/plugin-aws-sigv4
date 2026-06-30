@@ -1,5 +1,12 @@
+import type { ReactPortal } from 'react';
 import { useCallback, useEffect, useState } from '@harborclient/sdk/react';
-import { Button, Modal, ModalFooter, StatusMessage } from '@harborclient/sdk/components';
+import {
+  Button,
+  Modal,
+  ModalFooter,
+  StatusMessage,
+  portalToBody
+} from '@harborclient/sdk/components';
 import { copyToClipboard } from '@harborclient/sdk/clipboard';
 import type { PluginContext } from '@harborclient/sdk';
 import { clearSignPreview, getSignPreview, subscribeSignPreview } from './signPreviewState';
@@ -14,7 +21,7 @@ interface Props {
 /**
  * Accessible modal that displays signed AWS headers for copy and review.
  */
-export function SignPreviewModal({ hc }: Props) {
+export function SignPreviewModal({ hc }: Props): ReactPortal | null {
   const [open, setOpen] = useState(() => getSignPreview() != null);
   const [preview, setPreview] = useState(getSignPreview);
 
@@ -59,7 +66,7 @@ export function SignPreviewModal({ hc }: Props) {
   const titleId = 'aws-sign-preview-title';
   const hasErrors = (preview.errors?.length ?? 0) > 0;
 
-  return (
+  return portalToBody(
     <Modal
       labelledBy={titleId}
       title="AWS SigV4 signature preview"

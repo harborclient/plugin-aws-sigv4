@@ -5,6 +5,7 @@ import type {
   RequestAwsSettings
 } from '../types';
 import type { PluginContext } from '@harborclient/sdk';
+import { asRecord, numArray, strArray } from '@harborclient/sdk/storage';
 import { getActiveRequestBridge } from '../components/activeRequestBridge';
 import { CONFIG_INDEX_KEY, collectionStorageKey } from '../storage/keys';
 import { parseCollectionAwsConfig, parseRequestAwsSettings } from '../storage/defaults';
@@ -22,22 +23,14 @@ export function emptyConfigIndex(): ConfigIndex {
  * @param stored - Raw value from plugin storage.
  */
 export function parseConfigIndex(stored: unknown): ConfigIndex {
-  if (!stored || typeof stored !== 'object') {
+  const record = asRecord(stored);
+  if (!record) {
     return emptyConfigIndex();
   }
 
-  const record = stored as Partial<ConfigIndex>;
   return {
-    collections: Array.isArray(record.collections)
-      ? record.collections.filter(
-          (value): value is number => typeof value === 'number' && Number.isFinite(value)
-        )
-      : [],
-    requestKeys: Array.isArray(record.requestKeys)
-      ? record.requestKeys.filter(
-          (value): value is string => typeof value === 'string' && value.length > 0
-        )
-      : []
+    collections: numArray(record.collections),
+    requestKeys: strArray(record.requestKeys).filter((key) => key.length > 0)
   };
 }
 

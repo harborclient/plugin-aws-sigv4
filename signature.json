@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "pluginId": "com.harborclient.plugins.aws-sigv4",
-  "pluginVersion": "1.0.3",
+  "pluginVersion": "1.0.4",
   "algorithm": "Ed25519",
   "files": [
     {
       "path": ".eslintcache",
-      "sha256": "a5da0039a11bb2f1b2952aed422f65b3ee6bf1e892f7d428d09efea60797e2cc"
+      "sha256": "9f3e5275ba24e9f9758084e9cf8861cd72b2aa563fcbe363ba62bd831e9f6f84"
     },
     {
       "path": ".gitignore",
@@ -22,27 +22,31 @@
     },
     {
       "path": "dist/main.js",
-      "sha256": "981cc5f8b044c7993548b4eac38b1d4f98dffacf8a2f37b08930ce77f5df0095"
+      "sha256": "759d915ba640b24d801a8c0cea49c95f1272919561bce636c4cfa52824f60d6b"
     },
     {
       "path": "dist/renderer.js",
-      "sha256": "31db48eefdd62bf5eb7a9ca0d507139c6e72526783bf2bf15955b9f68c74f72a"
+      "sha256": "d2eafd668309cccabe5d7bfa8bf77540cb5aa865db61fc51a54759d09c07751d"
     },
     {
       "path": "eslint.config.mjs",
-      "sha256": "64d69bf13cd37bef7620cbbb2038f0dee18c4a43b9477cac4fef72d6619e7217"
+      "sha256": "d74a66f91fd2bcd4d548f8fbff511fb47e4db06620ac137b29a8867e377c259d"
     },
     {
       "path": "manifest.json",
-      "sha256": "7e0d9dd412f4f5954fe374504cb83569a08eb985ef7197d86d9ec0880a6b358a"
+      "sha256": "5a74a5af0a29a48fb5b05d49d7985c2c47c0710340cf7a45ce8b394ed4f70abf"
     },
     {
       "path": "package.json",
-      "sha256": "670fae66d03799b2e0be83907cee38c2dfbb14af8ca2c546ad8afac8aa6b26bf"
+      "sha256": "65e075430bf4e9f18b65398d02a0194ee38e1ad01b4bc25f81acab9793702946"
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "79e6c26789c497e4eec10c3b4fc16ffaca352a7dc6f2c56d11c1a08860ae06ed"
+      "sha256": "4580353d190e3876bd735a14f62882eecacbc3b31efe4ab90775f2c515af5d8d"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "ecbfb1ae97fd3655cbacd0b358be0c1aa02213ffc97053f09347aa020b23c286"
     },
     {
       "path": "README.md",
@@ -51,6 +55,10 @@
     {
       "path": "screenshot.png",
       "sha256": "c1bf531ab5e767ab5c601517ea0f12dabf0eb0db48a6af0fc6ffcac90a1b4731"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "0fc5c7e09eca444dad5904aeb7b1e9aac052c6c17f9bb94be07e408be3bc710e"
     },
     {
       "path": "scripts/plugin-sign.ts",
@@ -82,7 +90,7 @@
     },
     {
       "path": "src/components/SignPreviewModal.tsx",
-      "sha256": "190fcde512cccca6dd942564db10822de950aceb623d54c94f2dbc274e1b90bc"
+      "sha256": "b1b35bf1633336da663e118bd491349ca2e04ba6fb9c678de89a227096cdff93"
     },
     {
       "path": "src/components/signPreviewState.ts",
@@ -98,11 +106,7 @@
     },
     {
       "path": "src/renderer.tsx",
-      "sha256": "5d5a9e902444149907d6afcba57ebb4cafa2e573933275bb7ed21401f2831418"
-    },
-    {
-      "path": "src/shims/react.ts",
-      "sha256": "d739cd812995cc1f9303ca4495d3b1c5ee5d5c0671aaa348067ab900ffb3ad63"
+      "sha256": "185ef96758d9eef75a1683b047b4043f736810b84786774eb15f65d34592df4c"
     },
     {
       "path": "src/signing/parseUrl.ts",
@@ -118,7 +122,7 @@
     },
     {
       "path": "src/storage/defaults.ts",
-      "sha256": "c1f655d493196b06ab3cf2cc2c83c6f0be65569571184e2a6783b6d3cbe762e4"
+      "sha256": "28dfeb8bb3421c7bc18b976c4b909c61c6e6376a731233954f90edd88bbc584a"
     },
     {
       "path": "src/storage/keys.ts",
@@ -126,7 +130,7 @@
     },
     {
       "path": "src/sync/configSync.ts",
-      "sha256": "e4277045f3545c2d6e5582358d9c00bb44244aa02fef18229a7fc18d02e5adb4"
+      "sha256": "1177b4df2aafb5c1610bb2b6b6e42f8c74aa9928750c3d2f8ee6e203a4001414"
     },
     {
       "path": "src/sync/signingContext.ts",
@@ -142,12 +146,12 @@
     },
     {
       "path": "tsconfig.json",
-      "sha256": "dced0ea880bec6222ac9856d3d2ce11b91fd874298f3129c8b5944606dc73668"
+      "sha256": "663c22f2cb634722bc1c1191c4808b53c89d930979d4936cb6d0a539f4476ac9"
     },
     {
       "path": "vitest.config.ts",
       "sha256": "649e4273437371e435cea50f021ebd1bbe804a98f29cf6f52d928ffc72ac5356"
     }
   ],
-  "signature": "ZtsdV2HzCyXQwlQokyqdXpKAmnkJSqPuws6opVmG5vm0P/8z5ex/ZcgBOVRfF7fWXOf9PguZxyhFMGWGTvziDA=="
+  "signature": "8E8UVnB/Bdgu5a7OHXZxTKcdD6l4XpOMuQjESq5/1UoDnznxc5xpFPbpXKqot3j94YlYdB/5dIEPHXOOE6fUCA=="
 }

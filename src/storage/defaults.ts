@@ -1,3 +1,4 @@
+import { asRecord, bool, num, str } from '@harborclient/sdk/storage';
 import type { CollectionAwsConfig, RequestAwsSettings } from '../types';
 
 /**
@@ -33,18 +34,18 @@ export function defaultRequestAwsSettings(): RequestAwsSettings {
  * @param stored - Raw value from plugin storage.
  */
 export function parseCollectionAwsConfig(stored: unknown): CollectionAwsConfig {
-  if (!stored || typeof stored !== 'object') {
+  const record = asRecord(stored);
+  if (!record) {
     return defaultCollectionAwsConfig();
   }
 
-  const record = stored as Partial<CollectionAwsConfig>;
   return {
-    accessKeyId: typeof record.accessKeyId === 'string' ? record.accessKeyId : '',
-    secretAccessKey: typeof record.secretAccessKey === 'string' ? record.secretAccessKey : '',
-    region: typeof record.region === 'string' ? record.region : 'us-east-1',
-    service: typeof record.service === 'string' ? record.service : '',
-    sessionToken: typeof record.sessionToken === 'string' ? record.sessionToken : '',
-    autoSign: record.autoSign !== false
+    accessKeyId: str(record.accessKeyId, ''),
+    secretAccessKey: str(record.secretAccessKey, ''),
+    region: str(record.region, 'us-east-1'),
+    service: str(record.service, ''),
+    sessionToken: str(record.sessionToken, ''),
+    autoSign: bool(record.autoSign, true)
   };
 }
 
@@ -54,16 +55,16 @@ export function parseCollectionAwsConfig(stored: unknown): CollectionAwsConfig {
  * @param stored - Raw value from plugin storage.
  */
 export function parseRequestAwsSettings(stored: unknown): RequestAwsSettings {
-  if (!stored || typeof stored !== 'object') {
+  const record = asRecord(stored);
+  if (!record) {
     return defaultRequestAwsSettings();
   }
 
-  const record = stored as Partial<RequestAwsSettings>;
   return {
-    collectionId: typeof record.collectionId === 'number' ? record.collectionId : null,
-    region: typeof record.region === 'string' ? record.region : '',
-    service: typeof record.service === 'string' ? record.service : '',
-    sessionToken: typeof record.sessionToken === 'string' ? record.sessionToken : '',
-    autoSign: record.autoSign !== false
+    collectionId: num(record.collectionId, null),
+    region: str(record.region, ''),
+    service: str(record.service, ''),
+    sessionToken: str(record.sessionToken, ''),
+    autoSign: bool(record.autoSign, true)
   };
 }
