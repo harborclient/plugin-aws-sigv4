@@ -34,7 +34,7 @@
     },
     {
       "path": "manifest.json",
-      "sha256": "5a74a5af0a29a48fb5b05d49d7985c2c47c0710340cf7a45ce8b394ed4f70abf"
+      "sha256": "9215fc179edd882f4d9c51823f0c68c237f84abd62296b9258e89864e3cfb7c2"
     },
     {
       "path": "package.json",
@@ -153,5 +153,5 @@
       "sha256": "649e4273437371e435cea50f021ebd1bbe804a98f29cf6f52d928ffc72ac5356"
     }
   ],
-  "signature": "8E8UVnB/Bdgu5a7OHXZxTKcdD6l4XpOMuQjESq5/1UoDnznxc5xpFPbpXKqot3j94YlYdB/5dIEPHXOOE6fUCA=="
+  "signature": "RYLLQ+LWEDKSNATgerE3mn/v2vsySX/1NpuSLr0thz1qsk2ZnlEaqNsa++LTKAU8dRJp2WZVKqMqApQFnQSlAQ=="
 }

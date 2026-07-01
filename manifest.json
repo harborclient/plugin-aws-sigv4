@@ -1,11 +1,12 @@
 {
   "id": "com.harborclient.plugins.aws-sigv4",
   "name": "AWS SigV4",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "HarborClient",
   "description": "README.md",
+  "summary": "HarborClient plugin that signs outgoing HTTP requests with AWS Signature Version 4.",
   "engines": {
-    "harborclient": ">=1.8.4"
+    "harborclient": ">=1.9.0"
   },
   "renderer": "dist/renderer.js",
   "main": "dist/main.js",
