@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pluginId": "com.harborclient.plugins.aws-sigv4",
-  "pluginVersion": "1.0.4",
+  "pluginVersion": "1.0.6",
   "algorithm": "Ed25519",
   "files": [
     {
@@ -34,7 +34,7 @@
     },
     {
       "path": "manifest.json",
-      "sha256": "9215fc179edd882f4d9c51823f0c68c237f84abd62296b9258e89864e3cfb7c2"
+      "sha256": "90d9b25430aec27c4ea0948d9c042a1ac1ae9b78fe9d2e36080b11f1e06bb1d8"
     },
     {
       "path": "package.json",
@@ -153,5 +153,5 @@
       "sha256": "649e4273437371e435cea50f021ebd1bbe804a98f29cf6f52d928ffc72ac5356"
     }
   ],
-  "signature": "RYLLQ+LWEDKSNATgerE3mn/v2vsySX/1NpuSLr0thz1qsk2ZnlEaqNsa++LTKAU8dRJp2WZVKqMqApQFnQSlAQ=="
+  "signature": "aEZuxUnM37c4XwyLVRaQ7d0aG4PcB5kTzXOUbvOw6KrZ1sH4btZ7+Q2xBhWvJPUnmffbbtxhTqjNkey6engXCg=="
 }
