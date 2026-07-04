@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pluginId": "com.harborclient.plugins.aws-sigv4",
-  "pluginVersion": "1.0.7",
+  "pluginVersion": "1.0.8",
   "algorithm": "Ed25519",
   "files": [
     {
@@ -22,11 +22,11 @@
     },
     {
       "path": "dist/main.js",
-      "sha256": "759d915ba640b24d801a8c0cea49c95f1272919561bce636c4cfa52824f60d6b"
+      "sha256": "1e146414a3e414e86d6f933fdc1be05fd8d06d205fd3d45a8e35ec6b575740f5"
     },
     {
       "path": "dist/renderer.js",
-      "sha256": "d2eafd668309cccabe5d7bfa8bf77540cb5aa865db61fc51a54759d09c07751d"
+      "sha256": "96446ddd6a33ce9a6582a1285b090417d5f9096a1ba5a6305a9547c320123ad8"
     },
     {
       "path": "eslint.config.mjs",
@@ -34,19 +34,15 @@
     },
     {
       "path": "manifest.json",
-      "sha256": "e4c4198633b854a5b029aa9adacb0aa233b7fd0cd20038d93a741714a1ae103e"
+      "sha256": "c7611de03bdc888c5dadb8c64f5b3e3e24c8431312edf4a45a5bef817340f5c5"
     },
     {
       "path": "package.json",
-      "sha256": "65e075430bf4e9f18b65398d02a0194ee38e1ad01b4bc25f81acab9793702946"
+      "sha256": "7db60683f71cfb47fb1567d824364aadd1f5c94ca69b8b33895244d27fa7695a"
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "4580353d190e3876bd735a14f62882eecacbc3b31efe4ab90775f2c515af5d8d"
-    },
-    {
-      "path": "pnpm-workspace.yaml",
-      "sha256": "ecbfb1ae97fd3655cbacd0b358be0c1aa02213ffc97053f09347aa020b23c286"
+      "sha256": "5920972e15c8f512ab732ee126bacfae51dfc4b83fc506c13b3ba33b2172d9b1"
     },
     {
       "path": "README.md",
@@ -62,7 +58,7 @@
     },
     {
       "path": "screenshot.png",
-      "sha256": "c1bf531ab5e767ab5c601517ea0f12dabf0eb0db48a6af0fc6ffcac90a1b4731"
+      "sha256": "13fbb0db8b195b39f8036f9039e15a539fb3050e29a8e66c3f8c3d96315a1a2a"
     },
     {
       "path": "scripts/build.mjs",
@@ -77,12 +73,16 @@
       "sha256": "3e53a3d5d692c5bfd8f063d69b2331743f8afeef3330b7e21a3b69d5daeb2ae8"
     },
     {
+      "path": "scripts/publish.sh",
+      "sha256": "272abe246e7b12684741a9eb3a26928ec7dd9a62ad4e26b95fa104c32d516412"
+    },
+    {
       "path": "scripts/render-screenshot.sh",
       "sha256": "d2fe525f530446f4f53add2abcfed2ec7f11253a7d128608781ccd18487fbb25"
     },
     {
       "path": "scripts/screenshot-marketing.html",
-      "sha256": "91b83fe753ada72cb20bf2e8eb50d8baa0438f3b2111ce0f5d59e650ae1ad854"
+      "sha256": "095473eb989a21d786c91e048cd4929c4197bae80110d0d9ea77a42c0e6f2e52"
     },
     {
       "path": "src/components/activeRequestBridge.ts",
@@ -154,12 +154,13 @@
     },
     {
       "path": "tsconfig.json",
-      "sha256": "663c22f2cb634722bc1c1191c4808b53c89d930979d4936cb6d0a539f4476ac9"
+      "sha256": "c80939b01590c2567f3b43f169bec517e147b09a26352bef2f08e020b1c6884d"
     },
     {
       "path": "vitest.config.ts",
       "sha256": "649e4273437371e435cea50f021ebd1bbe804a98f29cf6f52d928ffc72ac5356"
     }
   ],
-  "signature": "Ut8LWkrucnw+zXn2FBIrPfKxnRZXjmK+YTmTnr0qwa/g8gm2zkQzwDRsZuN2hii65F7DHyrwcI7k/uWzRsQJAA=="
+  "keyId": "com.harborclient.plugins.aws-sigv4",
+  "signature": "yrCssZTnX0BITDf3kskzMC8Bn7hbriJo43MTsDv77bRvutKTk9J7b5fTTfEmQOxJQEsWsn+XYGELTqNbxwceCg=="
 }
