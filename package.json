@@ -2,6 +2,7 @@
   "name": "@harborclient/plugin-aws-sigv4",
   "type": "module",
   "scripts": {
+    "release": "bash scripts/publish.sh",
     "build": "pnpm build:main && node scripts/build.mjs",
     "build:main": "esbuild src/main.ts --bundle --outfile=dist/main.js --format=esm --platform=browser --main-fields=module,main",
     "build:renderer": "node scripts/build.mjs",
@@ -20,7 +21,7 @@
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.2.0",
-    "@harborclient/sdk": "^1.0.0",
+    "@harborclient/sdk": "^1.0.32",
     "@smithy/protocol-http": "^5.5.2",
     "@smithy/signature-v4": "^5.5.2"
   },

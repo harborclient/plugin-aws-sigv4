@@ -1,559 +1,247 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
 
-      html,
-      body {
-        width: 1280px;
-        height: 720px;
-        min-height: 720px;
-        max-height: 720px;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family:
-          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background-color: #0c1220;
-        background-image:
-          radial-gradient(ellipse 70% 60% at 85% 10%, rgba(56, 189, 248, 0.2) 0%, transparent 55%),
-          radial-gradient(ellipse 60% 50% at 10% 85%, rgba(99, 102, 241, 0.16) 0%, transparent 50%),
-          radial-gradient(ellipse 40% 30% at 50% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 60%),
-          linear-gradient(160deg, #0c1220 0%, #111827 45%, #0a0f1a 100%);
-        background-repeat: no-repeat;
-        background-size: 1280px 720px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      .canvas {
-        position: fixed;
-        inset: 0;
-        width: 1280px;
-        height: 720px;
-        background: transparent;
-      }
+    html,
+    body {
+      width: 1280px;
+      height: 720px;
+      min-height: 720px;
+      max-height: 720px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #030910;
+      background-image:
+        radial-gradient(ellipse 48% 58% at 78% 23%, rgba(45, 212, 191, 0.22), transparent 66%),
+        radial-gradient(ellipse 46% 54% at 20% 72%, rgba(34, 211, 238, 0.18), transparent 62%),
+        radial-gradient(circle at 50% 55%, rgba(20, 184, 166, 0.12), transparent 42%),
+        linear-gradient(145deg, #02070d 0%, #07111a 42%, #030910 100%);
+      background-repeat: no-repeat;
+      background-size: 1280px 720px;
+    }
 
-      .grid {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 32px 32px;
-        pointer-events: none;
-      }
+    .canvas {
+      position: fixed;
+      inset: 0;
+      width: 1280px;
+      height: 720px;
+      background: transparent;
+    }
 
-      .header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 2;
-        padding: 32px 48px 20px;
-      }
+    .canvas::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+      opacity: 0.38;
+    }
 
-      .mockup-area {
-        position: absolute;
-        top: 172px;
-        left: 0;
-        width: 1280px;
-        height: 548px;
-      }
+    .canvas::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 45%, transparent 0%, transparent 46%, rgba(0, 0, 0, 0.58) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.38));
+    }
 
-      .badge-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 14px;
-      }
+    .hero {
+      position: absolute;
+      z-index: 2;
+      top: 156px;
+      left: 94px;
+    }
 
-      .plugin-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 5px 12px;
-        border-radius: 999px;
-        background: rgba(56, 189, 248, 0.12);
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        color: #7dd3fc;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 26px;
+      color: #99f6e4;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
 
-      .plugin-badge .dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #38bdf8;
-        box-shadow: 0 0 8px #38bdf8;
-      }
+    .eyebrow::before {
+      content: '';
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #2dd4bf;
+      box-shadow:
+        0 0 18px rgba(45, 212, 191, 0.9),
+        0 0 44px rgba(45, 212, 191, 0.45);
+    }
 
-      .pill {
-        padding: 4px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #94a3b8;
-        font-size: 11px;
-        font-weight: 500;
-      }
+    .plugin-name {
+      position: relative;
+      color: #f8ffff;
+      font-size: 152px;
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.085em;
+      text-shadow:
+        0 0 18px rgba(153, 246, 228, 0.34),
+        0 0 82px rgba(45, 212, 191, 0.28),
+        0 34px 80px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
 
-      h1 {
-        font-size: 38px;
-        font-weight: 700;
-        line-height: 1.1;
-        color: #f8fafc;
-        letter-spacing: -0.02em;
-      }
+    .plugin-name::after {
+      content: 'AWS SigV4';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(45, 212, 191, 0.22);
+      filter: blur(10px);
+      transform: translate(12px, 16px);
+    }
 
-      h1 span {
-        background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+    .tagline {
+      margin-top: 38px;
+      color: rgba(226, 255, 251, 0.76);
+      font-size: 33px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
 
-      .subtitle {
-        margin-top: 10px;
-        font-size: 16px;
-        color: #64748b;
-        line-height: 1.45;
-        max-width: 620px;
-      }
+    .tile {
+      position: absolute;
+      z-index: 1;
+      right: 126px;
+      top: 166px;
+      width: 244px;
+      height: 244px;
+      border-radius: 58px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)),
+        linear-gradient(145deg, rgba(20, 184, 166, 0.28), rgba(8, 13, 22, 0.72));
+      border: 1px solid rgba(153, 246, 228, 0.22);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+        0 30px 90px rgba(0, 0, 0, 0.48),
+        0 0 90px rgba(45, 212, 191, 0.28);
+    }
 
-      .mockup-glow {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 4px;
-        bottom: 0;
-        border-radius: 16px 16px 0 0;
-        background: linear-gradient(
-          135deg,
-          rgba(56, 189, 248, 0.22),
-          rgba(129, 140, 248, 0.14),
-          rgba(52, 211, 153, 0.1)
-        );
-        filter: blur(24px);
-        opacity: 0.85;
-      }
+    .tile::before {
+      content: 'AWS';
+      position: absolute;
+      inset: 50px 36px 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #eafffb;
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      text-shadow: 0 0 32px rgba(94, 234, 212, 0.42);
+    }
 
-      .mockup {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 1280px;
-        height: 548px;
-        border-radius: 12px 12px 0 0;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-bottom: none;
-        background: #1a1f2e;
-        box-shadow:
-          0 -8px 32px rgba(0, 0, 0, 0.35),
-          0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-      }
+    .tile::after {
+      content: '';
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      bottom: 64px;
+      height: 38px;
+      border-radius: 999px 999px 12px 12px;
+      border-bottom: 8px solid rgba(94, 234, 212, 0.92);
+      transform: skewX(-14deg);
+      filter: drop-shadow(0 0 24px rgba(45, 212, 191, 0.52));
+    }
 
-      .mockup-toolbar {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        background: #141824;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        flex-shrink: 0;
-      }
+    .beam {
+      position: absolute;
+      z-index: 1;
+      right: 350px;
+      top: 326px;
+      width: 172px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.9), transparent);
+      box-shadow: 0 0 24px rgba(45, 212, 191, 0.55);
+      transform: rotate(-18deg);
+    }
 
-      .traffic {
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-      }
+    .orb {
+      position: absolute;
+      border-radius: 999px;
+      background: #67e8f9;
+      box-shadow:
+        0 0 16px rgba(103, 232, 249, 0.78),
+        0 0 44px rgba(20, 184, 166, 0.34);
+    }
 
-      .traffic.r {
-        background: #ff5f57;
-      }
+    .orb.one {
+      top: 118px;
+      left: 874px;
+      width: 8px;
+      height: 8px;
+    }
 
-      .traffic.y {
-        background: #febc2e;
-      }
+    .orb.two {
+      top: 504px;
+      left: 1038px;
+      width: 11px;
+      height: 11px;
+      opacity: 0.82;
+    }
 
-      .traffic.g {
-        background: #28c840;
-      }
+    .orb.three {
+      top: 578px;
+      left: 262px;
+      width: 7px;
+      height: 7px;
+      opacity: 0.7;
+    }
 
-      .toolbar-title {
-        margin-left: 10px;
-        flex: 1;
-        min-width: 0;
-        font-size: 12px;
-        color: #64748b;
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+    .corner-glow {
+      position: absolute;
+      z-index: 1;
+      right: -120px;
+      bottom: -180px;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: rgba(20, 184, 166, 0.18);
+      filter: blur(68px);
+    }
+  </style>
+</head>
 
-      .toolbar-action {
-        margin-left: auto;
-        padding: 4px 10px;
-        border-radius: 6px;
-        background: rgba(56, 189, 248, 0.12);
-        border: 1px solid rgba(56, 189, 248, 0.35);
-        color: #7dd3fc;
-        font-size: 11px;
-        font-weight: 600;
-        white-space: nowrap;
-        flex-shrink: 0;
-      }
+<body>
+  <div class="canvas">
+    <div class="corner-glow"></div>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+    <div class="beam"></div>
+    <div class="tile"></div>
 
-      .plugin-panel {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        background: #161b28;
-      }
-
-      .request-bar {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        background: #1a1f2e;
-        flex-shrink: 0;
-      }
-
-      .method-badge {
-        padding: 6px 10px;
-        border-radius: 6px;
-        background: rgba(52, 211, 153, 0.15);
-        border: 1px solid rgba(52, 211, 153, 0.35);
-        color: #34d399;
-        font-size: 12px;
-        font-weight: 700;
-        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-        flex-shrink: 0;
-      }
-
-      .url-text {
-        flex: 1;
-        min-width: 0;
-        font-size: 13px;
-        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-        color: #e2e8f0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .tab-row {
-        display: flex;
-        gap: 2px;
-        padding: 0 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        background: #141824;
-        flex-shrink: 0;
-      }
-
-      .tab {
-        padding: 10px 14px;
-        font-size: 13px;
-        font-weight: 500;
-        color: #64748b;
-        border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
-      }
-
-      .tab.active {
-        color: #e2e8f0;
-        border-bottom-color: #38bdf8;
-      }
-
-      .panel-body {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        padding: 20px 24px;
-        gap: 16px;
-      }
-
-      .section-title {
-        font-size: 14px;
-        font-weight: 600;
-        color: #e2e8f0;
-      }
-
-      .field-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px 20px;
-      }
-
-      .field {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-      }
-
-      .field.full {
-        grid-column: 1 / -1;
-      }
-
-      .field-label {
-        font-size: 12px;
-        font-weight: 500;
-        color: #64748b;
-      }
-
-      .field-input {
-        padding: 8px 10px;
-        border-radius: 6px;
-        background: #0f1420;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 13px;
-        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-        color: #e2e8f0;
-      }
-
-      .field-value {
-        padding: 8px 10px;
-        border-radius: 6px;
-        background: #0f1420;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        font-size: 13px;
-        color: #e2e8f0;
-      }
-
-      .checkbox-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        color: #e2e8f0;
-        margin-top: 2px;
-      }
-
-      .checkbox-row input {
-        width: 16px;
-        height: 16px;
-        accent-color: #38bdf8;
-      }
-
-      .headers-block {
-        flex-shrink: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        background: #0f1420;
-        padding: 12px 24px 16px;
-      }
-
-      .headers-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #64748b;
-        margin-bottom: 8px;
-      }
-
-      .header-row {
-        display: flex;
-        gap: 12px;
-        padding: 6px 10px;
-        border-radius: 4px;
-        font-size: 12px;
-        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-        line-height: 1.4;
-      }
-
-      .header-row .header-name {
-        flex-shrink: 0;
-        color: #94a3b8;
-        min-width: 120px;
-      }
-
-      .header-row .header-value {
-        flex: 1;
-        min-width: 0;
-        color: #cbd5e1;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .header-row.highlight {
-        background: rgba(56, 189, 248, 0.08);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-      }
-
-      .header-row.highlight .header-name {
-        color: #7dd3fc;
-      }
-
-      .header-row.highlight .header-value {
-        color: #e2e8f0;
-      }
-
-      .toast {
-        position: absolute;
-        top: 36px;
-        right: 56px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 14px;
-        border-radius: 9px;
-        background: rgba(15, 23, 42, 0.95);
-        border: 1px solid rgba(52, 211, 153, 0.4);
-        box-shadow:
-          0 8px 24px rgba(0, 0, 0, 0.45),
-          0 0 20px rgba(52, 211, 153, 0.12);
-        z-index: 4;
-      }
-
-      .toast-icon {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: rgba(52, 211, 153, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #34d399;
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .toast-text {
-        font-size: 12px;
-        color: #e2e8f0;
-        font-weight: 500;
-      }
-    </style>
-  </head>
-
-  <body>
-    <!--
-    AWS SigV4 plugin marketing screenshot (1280×720).
-
-    Editable regions:
-    - .plugin-badge          Category label
-    - .badge-row .pill       Feature highlight pills
-    - h1 / h1 span           Headline; gradient accent is on the <span>
-    - .subtitle              One-line description
-    - .toolbar-title          Mock HarborClient window title
-    - .plugin-panel           Main UI preview (request editor + AWS SigV4 tab)
-    - .toast / .toast-text    Optional success banner
-  -->
-    <div class="canvas">
-      <div class="grid"></div>
-
-      <div class="header">
-        <div class="badge-row">
-          <div class="plugin-badge"><span class="dot"></span> HarborClient Plugin</div>
-          <span class="pill">SigV4 signing</span>
-          <span class="pill">Auto-sign</span>
-          <span class="pill">Collection credentials</span>
-          <span class="pill">API Gateway &amp; S3</span>
-        </div>
-        <h1>Sign AWS requests — <span>automatically</span></h1>
-        <p class="subtitle">
-          Sign HTTP requests to AWS APIs with stored IAM credentials, per-request overrides, and
-          optional manual signing from the request toolbar.
-        </p>
-      </div>
-
-      <div class="mockup-area">
-        <div class="mockup-glow"></div>
-        <div class="mockup">
-          <div class="mockup-toolbar">
-            <span class="traffic r"></span>
-            <span class="traffic y"></span>
-            <span class="traffic g"></span>
-            <span class="toolbar-title"
-              >HarborClient — GET api.example.execute-api.us-east-1.amazonaws.com</span
-            >
-            <span class="toolbar-action">Sign request</span>
-          </div>
-          <div class="plugin-panel">
-            <div class="request-bar">
-              <span class="method-badge">GET</span>
-              <span class="url-text"
-                >https://abc123.execute-api.us-east-1.amazonaws.com/prod/users</span
-              >
-            </div>
-            <div class="tab-row">
-              <span class="tab">Params</span>
-              <span class="tab">Headers</span>
-              <span class="tab">Body</span>
-              <span class="tab active">AWS SigV4</span>
-            </div>
-            <div class="panel-body">
-              <p class="section-title">AWS SigV4</p>
-              <div class="field-grid">
-                <div class="field full">
-                  <span class="field-label">Collection profile</span>
-                  <div class="field-value">Production AWS</div>
-                </div>
-                <div class="field">
-                  <span class="field-label">Region</span>
-                  <div class="field-input">us-east-1</div>
-                </div>
-                <div class="field">
-                  <span class="field-label">Service</span>
-                  <div class="field-input">execute-api</div>
-                </div>
-                <div class="field full">
-                  <span class="field-label">Access Key ID</span>
-                  <div class="field-input">AKIA••••••••EXAMPLE</div>
-                </div>
-                <div class="field full">
-                  <label class="checkbox-row">
-                    <input type="checkbox" checked disabled />
-                    Auto-sign before send
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="headers-block">
-              <div class="headers-label">Signed headers</div>
-              <div class="header-row highlight">
-                <span class="header-name">Authorization</span>
-                <span class="header-value"
-                  >AWS4-HMAC-SHA256
-                  Credential=AKIAEXAMPLE/20250625/us-east-1/execute-api/aws4_request,
-                  SignedHeaders=host;x-amz-date, Signature=abc123…</span
-                >
-              </div>
-              <div class="header-row highlight">
-                <span class="header-name">x-amz-date</span>
-                <span class="header-value">20250625T120000Z</span>
-              </div>
-              <div class="header-row">
-                <span class="header-name">host</span>
-                <span class="header-value">abc123.execute-api.us-east-1.amazonaws.com</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="toast">
-        <div class="toast-icon">✓</div>
-        <span class="toast-text">Request signed with AWS SigV4</span>
-      </div>
+    <div class="hero">
+      <div class="eyebrow">HarborClient Plugin</div>
+      <h1 class="plugin-name">AWS SigV4</h1>
+      <p class="tagline">Sign AWS requests automatically.</p>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -1,6 +1,10 @@
 {
   "extends": "@harborclient/sdk/tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["react", "node"]
+  },
   "include": [
-    "src"
+    "src",
+    "scripts"
   ]
 }
