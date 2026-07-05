@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pluginId": "com.harborclient.plugins.aws-sigv4",
-  "pluginVersion": "1.0.8",
+  "pluginVersion": "1.0.9",
   "algorithm": "Ed25519",
   "files": [
     {
@@ -34,7 +34,7 @@
     },
     {
       "path": "manifest.json",
-      "sha256": "c7611de03bdc888c5dadb8c64f5b3e3e24c8431312edf4a45a5bef817340f5c5"
+      "sha256": "42f9ea70011cdf91df3522e5e856c55e3ea71af2f12b2c3aa92ea559a66775d1"
     },
     {
       "path": "package.json",
@@ -75,14 +75,6 @@
     {
       "path": "scripts/publish.sh",
       "sha256": "272abe246e7b12684741a9eb3a26928ec7dd9a62ad4e26b95fa104c32d516412"
-    },
-    {
-      "path": "scripts/render-screenshot.sh",
-      "sha256": "d2fe525f530446f4f53add2abcfed2ec7f11253a7d128608781ccd18487fbb25"
-    },
-    {
-      "path": "scripts/screenshot-marketing.html",
-      "sha256": "095473eb989a21d786c91e048cd4929c4197bae80110d0d9ea77a42c0e6f2e52"
     },
     {
       "path": "src/components/activeRequestBridge.ts",
@@ -162,5 +154,5 @@
     }
   ],
   "keyId": "com.harborclient.plugins.aws-sigv4",
-  "signature": "X1TffVs/9v0EL3dWLDPypFN9lzWUDULIR/NWeHjFkKl3Ly3Ll4SrKuV8ohyh5Pwa5WXREQWb6Zr1kqwe+yQVDA=="
+  "signature": "bdpAGoD4kZTM7Uyu605+eVhB4plXvdwAAX7QS19sP+IRo/meIF+0FqLFfxQl+SruP6g6OKQLchglG6aXDAc9Ag=="
 }
