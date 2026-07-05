@@ -58,7 +58,7 @@
     },
     {
       "path": "screenshot.png",
-      "sha256": "13fbb0db8b195b39f8036f9039e15a539fb3050e29a8e66c3f8c3d96315a1a2a"
+      "sha256": "03e1008ea87ae2bf0bc149b2d51d9bdad31d37f9b932f3c3315d2a05e4a79102"
     },
     {
       "path": "scripts/build.mjs",
@@ -162,5 +162,5 @@
     }
   ],
   "keyId": "com.harborclient.plugins.aws-sigv4",
-  "signature": "yrCssZTnX0BITDf3kskzMC8Bn7hbriJo43MTsDv77bRvutKTk9J7b5fTTfEmQOxJQEsWsn+XYGELTqNbxwceCg=="
+  "signature": "X1TffVs/9v0EL3dWLDPypFN9lzWUDULIR/NWeHjFkKl3Ly3Ll4SrKuV8ohyh5Pwa5WXREQWb6Zr1kqwe+yQVDA=="
 }
