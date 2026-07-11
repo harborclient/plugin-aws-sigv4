@@ -1,4 +1,3 @@
-import { installReact } from '@harborclient/sdk';
 import type { PluginContext } from '@harborclient/sdk';
 import { CollectionAwsTab } from './components/CollectionAwsTab';
 import { RequestAwsTab } from './components/RequestAwsTab';
@@ -13,13 +12,6 @@ import { syncConfigToMain } from './sync/configSync';
  * @param hc - Renderer plugin context from the HarborClient host.
  */
 export function activate(hc: PluginContext): void {
-  if (hc.react == null) {
-    throw new Error(
-      'HarborClient >=1.9.0 is required for plugin UI (hc.react is missing). Update HarborClient or disable this plugin.'
-    );
-  }
-  installReact(hc.react);
-
   hc.subscriptions.push({ dispose: () => setActiveRequestBridge(null) });
 
   /**

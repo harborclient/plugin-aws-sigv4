@@ -16,8 +16,8 @@
     "test": "vitest run",
     "screenshot": "bash scripts/render-screenshot.sh",
     "pack": "pnpm build && zip -r aws-sigv4.hcp manifest.json README.md dist",
-    "plugin:sign": "node --experimental-strip-types scripts/plugin-sign.ts",
-    "plugin:verify": "node --experimental-strip-types scripts/plugin-verify.ts"
+    "sign": "node --experimental-strip-types scripts/plugin-sign.ts",
+    "verify": "node --experimental-strip-types scripts/plugin-verify.ts"
   },
   "dependencies": {
     "@aws-crypto/sha256-js": "^5.2.0",
