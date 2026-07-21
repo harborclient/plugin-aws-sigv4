@@ -12,8 +12,6 @@ import { syncConfigToMain } from './sync/configSync';
  * @param hc - Renderer plugin context from the HarborClient host.
  */
 export function activate(hc: PluginContext): void {
-  hc.subscriptions.push({ dispose: () => setActiveRequestBridge(null) });
-
   /**
    * Collection settings tab host that closes over the plugin context.
    */
@@ -25,32 +23,39 @@ export function activate(hc: PluginContext): void {
     return <CollectionAwsTab context={context} hc={hc} />;
   }
 
-  hc.subscriptions.push(
-    hc.ui.registerCollectionSettingsTab({
-      id: 'aws',
-      title: 'AWS SigV4',
-      order: 60,
-      Component: CollectionAwsTabHost
-    }),
-    hc.ui.registerRequestTab({
-      id: 'aws',
-      title: 'AWS SigV4',
-      order: 60,
-      Component: ({ context }) => <RequestAwsTab context={context} hc={hc} />
-    }),
-    hc.ui.registerRequestToolbarAction({
-      id: 'sign',
-      title: 'Sign request',
-      command: 'sign',
-      order: 40
-    })
-  );
+  hc.ui.registerCollectionSettingsTab({
+    id: 'aws',
+    title: 'AWS SigV4',
+    order: 60,
+    Component: CollectionAwsTabHost
+  });
+
+  hc.ui.registerRequestTab({
+    id: 'aws',
+    title: 'AWS SigV4',
+    order: 60,
+    Component: ({ context }) => <RequestAwsTab context={context} hc={hc} />
+  });
+
+  hc.ui.registerRequestToolbarAction({
+    id: 'sign',
+    title: 'Sign request',
+    command: 'sign',
+    order: 40
+  });
 
   hc.commands.register('sign', () => {
     void runToolbarSign(hc);
   });
 
   void syncConfigToMain(hc);
+}
+
+/**
+ * Clears the active request bridge when the plugin renderer deactivates.
+ */
+export function deactivate(): void {
+  setActiveRequestBridge(null);
 }
 
 /**
