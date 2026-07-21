@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pluginId": "com.harborclient.plugins.aws-sigv4",
-  "pluginVersion": "1.0.11",
+  "pluginVersion": "1.0.12",
   "algorithm": "Ed25519",
   "files": [
     {
@@ -22,11 +22,11 @@
     },
     {
       "path": "dist/main.js",
-      "sha256": "1e146414a3e414e86d6f933fdc1be05fd8d06d205fd3d45a8e35ec6b575740f5"
+      "sha256": "5196717b4a1179df166cb56913d4dab576b3afee4fc15664617b051d7edf958a"
     },
     {
       "path": "dist/renderer.js",
-      "sha256": "eb86f63cdf876be10d55ccb44ea3737d269a1284d2b490eb89faede120cc3129"
+      "sha256": "1b4d300d5597214816c71a940a2c128ca30da016f0796d20ae019dbf2b8ea3ae"
     },
     {
       "path": "eslint.config.mjs",
@@ -34,15 +34,15 @@
     },
     {
       "path": "manifest.json",
-      "sha256": "f5c94f1cab3162cd5db0bd2b7b64b6968194e81f2425da4574846e6fbf8bbc40"
+      "sha256": "3dd36e2e14c4519c227367130c716c960a727348db8019fb9767dbef0cec3964"
     },
     {
       "path": "package.json",
-      "sha256": "d8d607a9aae7bdb057a3eb5fbfdd64b16ada8b87d3344a00bafb46b144c11d25"
+      "sha256": "3f09162a750f1e895748375f68e5ac7921b238572f8dcc68bae06ffcdbb25305"
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "5920972e15c8f512ab732ee126bacfae51dfc4b83fc506c13b3ba33b2172d9b1"
+      "sha256": "18f34cd6a375171bf4a89323ecaf14c5e636599bacebb6e8639d1ca8dc4c3433"
     },
     {
       "path": "README.md",
@@ -102,11 +102,11 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "506412e1fecdb88247ddbeb79d76b462e0ef6f0b35bceaca5100485c94dc5c3d"
+      "sha256": "54f1de3306c5263dd5078cc7d58886f65332eb17a699c58e884d99796a261c97"
     },
     {
       "path": "src/renderer.tsx",
-      "sha256": "877569442e8a12f555984894870ce09bccb3371ad4a2c2f24afb5fbf3b164715"
+      "sha256": "e260d7d53a1cbabd9c0195a5c18c0eaecc52cfc5a7dfcee713f2ef93acd94e65"
     },
     {
       "path": "src/signing/parseUrl.ts",
@@ -154,5 +154,5 @@
     }
   ],
   "keyId": "com.harborclient.plugins.aws-sigv4",
-  "signature": "51dAvMAc0Hw3pH67fxLu/7irZLPf8bEb5c/zlmIaYQJIQ5k0u08/T7hJCBx+BcjpEOhEmWoOQM/ASuUsEKBqCg=="
+  "signature": "j+Z0A6YraHMjxQGURVOyUz3lIEcBbtl9O+ZqFDwM/ll0LGkQ4xAiAKvvd4vPu2cYu1iSp3p8zqbk0Xkcy/lXAQ=="
 }
